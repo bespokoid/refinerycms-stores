@@ -158,6 +158,14 @@ module Refinery
        next_in_process!  if  bill_address.errors.empty? && ship_address.errors.empty?
      end
 
+     self.cc_token = params[:stripeToken]
+     self.cc_last4 = params[:last4]
+     self.cc_card_type = params[:card_type]
+     self.cc_expiry_month = params[:expiry_month]
+     self.cc_expiry_year = params[:expiry_year]
+     self.save!
+
+
      return bill_address, ship_address
    end 
 

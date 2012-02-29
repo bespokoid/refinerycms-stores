@@ -10,6 +10,9 @@
     %h3 Billing Information
     %h3 Shipping Information
     %h3 Payment
+    %p
+      token:
+      = @order.cc_token
 
     = link_to( 'cancel', refinery.cancel_order_orders_order_path( @order ) )
     = button_to( "change",   refinery.re_edit_orders_order_path( @order ),   :class => "re_edit-cart" )
