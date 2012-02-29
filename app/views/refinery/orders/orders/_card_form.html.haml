@@ -15,8 +15,13 @@
             var form$ = $("#payment-form");
             // token contains id, last4, and card type
             var token = response['id'];
+            var cardobj = response['card'];
+            var last4 = cardobj['last4'];
+            var card_type = cardobj['type'];
             // insert the token into the form so it gets submitted to the server
             form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+            form$.append("<input type='hidden' name='last4' value='" + last4 + "' />");
+            form$.append("<input type='hidden' name='card_type' value='" + card_type + "' />");
             // and submit
             form$.get(0).submit();
         }
