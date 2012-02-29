@@ -1,0 +1,34 @@
+- content_for :stylesheets do
+  = stylesheet_link_tag('refinery/refinerycms-stores')
+
+- content_for :body_content_title do
+  %h1 Order Shipping & Billing
+
+- content_for :body_content_left do
+
+  %section
+    .modal-form.basic-form
+      = form_tag( refinery.orders_order_path(@order), :method => :put, :id => 'payment-form' ) do
+        %h3 Your Billing Information
+        = render( :partial => "address_form", :object => @billing_address,  :locals => { :as_name => :billing_address } )
+          
+        %h3 Your Shipping Information
+        = check_box_tag( :use_billing, '1', false, { :onclick => "$('#shipping_address').toggle();" } )
+        = label_tag( :use_billing, 'use billing address for shipping', {:title => "use billing address for shipping"} )
+
+        = render( :partial => "address_form", :object => @shipping_address, :locals => { :as_name => :shipping_address } )
+
+        %h3 Your Payment Method
+
+        = render :partial => "card_form"
+        
+        = link_to( 'cancel', refinery.cancel_order_orders_order_path( @order ) )
+        = submit_tag( 'continue', :class => "modal-submit submit-button", :value => "continue &raquo;".html_safe )
+
+
+- content_for :body_content_right do
+  %aside
+    = render :partial => "order_snapshot", :object => @order
+
+= render "/refinery/content_page"
+

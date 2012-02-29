@@ -1,0 +1,22 @@
+<div id='cart'>
+
+  <div class="cart-title">
+    <h3>Your Cart</h3>
+    <% if cart.items.empty? -%>
+      <p><i>Your cart is empty; click add-to-cart to add products.</i></p>
+    <% end -%>
+  </div>
+
+  <table>
+    <%= render(:partial => "cart_item", :collection => cart.items) %>
+    <tr class="total-line">
+      <td colspan="2">Total</td>
+      <td class="total-cell"><%= number_to_currency(cart.total_price) %></td>
+    </tr>
+    <tr>
+      <td> <%= button_to( "checkout",   refinery.checkout_stores_stores_path(),   :class => "checkout-cart" )%></td>
+      <td> <%= button_to( "empty cart", refinery.empty_cart_stores_stores_path(), :class => "empty-cart" ) %></td>
+    </tr>
+  </table>
+
+</div>

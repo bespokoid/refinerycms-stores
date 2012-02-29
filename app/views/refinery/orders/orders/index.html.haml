@@ -1,0 +1,6 @@
+- content_for :body_content_left do
+  %ul#orders
+    - @orders.each do |order|
+      %li
+        = link_to order.order_status, refinery.orders_order_path(order)
+= render "/refinery/content_page"

@@ -1,0 +1,44 @@
+#order
+  .order-title
+    %h3
+      Order &ndash;
+      = @action.to_s.gsub(/_/,' ').titleize
+
+  .order-header
+    %p
+      \#
+      = order_snapshot.order_number
+
+  .order-content
+    %ul
+      - order_snapshot.line_items.each do |item|
+        %li
+          .item-name= item.product.name
+          .item-quantity= item.quantity
+          .item-unit-price= item.unit_price
+          .item-total-price= pretty_total_price( item )
+
+  .order-totals
+    - sub_product  = order_snapshot.total_price
+    - sub_discount = 0.0
+    - sub_shipping = 0.0
+    - sub_tax      = 0.0
+    - grand_total  = sub_product - sub_discount + sub_shipping + sub_tax
+
+    .sub-total-type product
+    .sub-total-amount= number_to_currency sub_product
+
+    .sub-total-type discount
+    .sub-total-amount= number_to_currency  sub_discount
+
+    .sub-total-type shipping
+    .sub-total-amount= number_to_currency  sub_shipping 
+
+    .sub-total-type tax
+    .sub-total-amount= number_to_currency  sub_shipping 
+
+    .total-type purchase total
+    .total-amount= number_to_currency  grand_total
+
+  .order-footer
+    &nbsp;

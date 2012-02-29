@@ -1,0 +1,25 @@
+<ul>
+  <% if ::Refinery::Orders::Admin::OrdersController.searchable? %>
+    <li>
+      <%= render '/refinery/admin/search', :url => refinery.orders_admin_orders_path %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to t('.create_new'), refinery.new_orders_admin_order_path,
+                 :class => "add_icon" %>
+  </li>
+<% if !searching? && ::Refinery::Orders::Admin::OrdersController.sortable? && ::Refinery::Orders::Order.any? %>
+  <li>
+    <%= link_to t('.reorder', :what => "Orders"),
+                 refinery.orders_admin_orders_path,
+                 :id => "reorder_action",
+                 :class => "reorder_icon" %>
+
+    <%= link_to t('.reorder_done', :what => "Orders"),
+                 refinery.orders_admin_orders_path,
+                 :id => "reorder_action_done",
+                 :style => "display: none;",
+                 :class => "reorder_icon" %>
+  </li>
+<% end %>
+</ul>

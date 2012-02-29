@@ -1,0 +1,57 @@
+<ul>
+  <% if ::Refinery::Stores::Admin::StoresController.searchable? %>
+    <li>
+      <%= render '/refinery/admin/search', :url => refinery.stores_admin_stores_path %>
+    </li>
+  <% end %>
+</ul>
+
+
+
+  <ul class='collapsible_menu'>
+    <li class='not_a_link'>
+      <%= link_to t('.title'), '#',
+                   :class => 'page_icon' %>
+    </li>
+    <li>
+      <%= link_to t('.manage'), refinery.stores_admin_stores_path,
+        :class => 'page_icon' %>
+    </li>
+  <li>
+    <%= link_to t('.create_new'), refinery.new_stores_admin_store_path,
+                 :class => "add_icon" %>
+  </li>
+  <% if !searching? && ::Refinery::Stores::Admin::StoresController.sortable? && ::Refinery::Stores::Store.any? %>
+  <li>
+    <%= link_to t('.reorder', :what => "Stores"),
+                 refinery.stores_admin_stores_path,
+                 :id => "reorder_action",
+                 :class => "reorder_icon" %>
+
+    <%= link_to t('.reorder_done', :what => "Stores"),
+                 refinery.stores_admin_stores_path,
+                 :id => "reorder_action_done",
+                 :style => "display: none;",
+                 :class => "reorder_icon" %>
+  </li>
+<% end %>
+
+  </ul>
+
+  <ul class='collapsible_menu'>
+    <li class='not_a_link'>
+      <%= link_to t('refinery.products.admin.products.actions.title'), '#',
+                  :class => 'folder_icon' %>
+    </li>
+    <li>
+      <%= link_to t('refinery.products.admin.products.actions.manage'), refinery.products_admin_products_path,
+                  :class => 'folder_icon' %>
+    </li>
+    <li>
+      <%= link_to t('refinery.products.admin.products.actions.create_new'), refinery.new_products_admin_product_path(),
+                  :class => 'add_icon' %>
+    </li>
+  </ul>
+
+
+</ul>

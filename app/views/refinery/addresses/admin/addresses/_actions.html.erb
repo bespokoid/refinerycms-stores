@@ -1,0 +1,25 @@
+<ul>
+  <% if ::Refinery::Addresses::Admin::AddressesController.searchable? %>
+    <li>
+      <%= render '/refinery/admin/search', :url => refinery.addresses_admin_addresses_path %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to t('.create_new'), refinery.new_addresses_admin_address_path,
+                 :class => "add_icon" %>
+  </li>
+<% if !searching? && ::Refinery::Addresses::Admin::AddressesController.sortable? && ::Refinery::Addresses::Address.any? %>
+  <li>
+    <%= link_to t('.reorder', :what => "Addresses"),
+                 refinery.addresses_admin_addresses_path,
+                 :id => "reorder_action",
+                 :class => "reorder_icon" %>
+
+    <%= link_to t('.reorder_done', :what => "Addresses"),
+                 refinery.addresses_admin_addresses_path,
+                 :id => "reorder_action_done",
+                 :style => "display: none;",
+                 :class => "reorder_icon" %>
+  </li>
+<% end %>
+</ul>

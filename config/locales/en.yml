@@ -1,0 +1,143 @@
+en:
+  refinery:
+    plugins:
+      addresses:
+        title: Addresses
+      orders:
+        title: Orders
+      products:
+        title: Products
+      stores:
+        title: Stores
+    addresses:
+      admin:
+        addresses:
+          actions:
+            create_new: Add New Address
+            reorder: Reorder Addresses
+            reorder_done: Done Reordering Addresses
+          records:
+            title: Addresses
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Addresses yet. Click "Add New Address" to add
+              your first address.
+          address:
+            view_live_html: View this address live <br/><em>(opens in a new window)</em>
+            edit: Edit this address
+            delete: Remove this address forever
+      addresses:
+        show:
+          other: Other Addresses
+    orders:
+      admin:
+        orders:
+          actions:
+            create_new: Add New Order
+            reorder: Reorder Orders
+            reorder_done: Done Reordering Orders
+          records:
+            title: Orders
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Orders yet. Click "Add New Order" to add your
+              first order.
+          order:
+            view_live_html: View this order live <br/><em>(opens in a new window)</em>
+            edit: Edit this order
+            delete: Remove this order forever
+      orders:
+        show:
+          other: Other Orders
+    products:
+      admin:
+        products:
+          actions:
+            title: Products
+            manage: Manage Products
+            create_new: Add New Product
+            reorder: Reorder Products
+            reorder_done: Done Reordering Products
+          records:
+            title: Products
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Products yet. Click "Add New Product" to add
+              your first product.
+          product:
+            view_live_html: View this product live <br/><em>(opens in a new window)</em>
+            edit: Edit this product
+            delete: Remove this product forever
+      products:
+        show:
+          other: Other Products
+    stores:
+      admin:
+        stores:
+          actions:
+            title: Stores
+            manage: Manage Stores
+            create_new: Add New Store
+            reorder: Reorder Stores
+            reorder_done: Done Reordering Stores
+          records:
+            title: Stores
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Stores yet. Click "Add New Store" to add your
+              first store.
+          store:
+            view_live_html: View this store live <br/><em>(opens in a new window)</em>
+            edit: Edit this store
+            delete: Remove this store forever
+      stores:
+        show:
+          other: Other Stores
+  activerecord:
+    attributes:
+      refinery/addresses/address:
+        customer: Customer
+        order: Order
+        is_billing: Is Billing
+        first_name: First Name
+        last_name: Last Name
+        phone: Phone
+        email: Email
+        address1: Address1
+        address2: Address2
+        city: City
+        state: State
+        zip: Zip
+        country: Country
+      refinery/orders/order:
+        order_number: Order Number
+        order_customer: Order Customer
+        order_status: Order Status
+        order_notes: Order Notes
+        shipping_type: Shipping Type
+        shipped_on: Shipped On
+        product_total: Product Total
+        shipping_charges: Shipping Charges
+        tax_charges: Tax Charges
+        cc_last4: Cc Last4
+        cc_card_type: Cc Card Type
+        cc_expiry_month: Cc Expiry Month
+        cc_expiry_year: Cc Expiry Year
+        cc_token: Cc Token
+        cc_purchased_on: Cc Purchased On
+      refinery/products/product:
+        store: Store
+        name: Name
+        code: Code
+        description: Description
+        date_available: Date Available
+        price: Price
+        size_width: Size Width
+        size_height: Size Height
+        size_depth: Size Depth
+        weight: Weight
+        tax_type: Tax Type
+        digital_download: Digital Download
+        main_pic: Main Pic
+        inactive: Inactive
+      refinery/stores/store:
+        name: Name
+        meta_keywords: Meta Keywords
+        description: Description
+        is_active: Is Active

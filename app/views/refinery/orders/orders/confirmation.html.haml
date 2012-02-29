@@ -1,0 +1,23 @@
+- content_for :stylesheets do
+  = stylesheet_link_tag('refinery/refinerycms-stores')
+
+- content_for :body_content_title do
+  %h1 Place your order
+
+- content_for :body_content_left do
+
+  %section
+    %h3 Billing Information
+    %h3 Shipping Information
+    %h3 Payment
+
+    = link_to( 'cancel', refinery.cancel_order_orders_order_path( @order ) )
+    = button_to( "change",   refinery.re_edit_orders_order_path( @order ),   :class => "re_edit-cart" )
+    = button_to( "Place your order &raquo;".html_safe,   refinery.purchase_orders_order_path( @order ),   :class => "checkout-cart" )
+
+- content_for :body_content_right do
+  %aside
+    = render :partial => "order_snapshot", :object => @order
+
+= render "/refinery/content_page"
+

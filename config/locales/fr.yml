@@ -1,0 +1,139 @@
+fr:
+  refinery:
+    plugins:
+      addresses:
+        title: Addresses
+      orders:
+        title: Orders
+      products:
+        title: Products
+      stores:
+        title: Stores
+    addresses:
+      admin:
+        addresses:
+          actions:
+            create_new: Créer un(e) nouve(au/l/lle) Address
+            reorder: Réordonner les Addresses
+            reorder_done: Fin de réordonnancement des Addresses
+          records:
+            title: Addresses
+            sorry_no_results: Désolé ! Aucun résultat.
+            no_items_yet: Il n'y a actuellement aucun(e) Address. Cliquer sur "Créer
+              un(e) nouve(au/l/lle) Address" pour créer votre premi(er/ère) address.
+          address:
+            view_live_html: Voir ce(t/tte) address <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier ce(t/tte) address
+            delete: Supprimer définitivement ce(t/tte) address
+      addresses:
+        show:
+          other: Autres Addresses
+    orders:
+      admin:
+        orders:
+          actions:
+            create_new: Créer un(e) nouve(au/l/lle) Order
+            reorder: Réordonner les Orders
+            reorder_done: Fin de réordonnancement des Orders
+          records:
+            title: Orders
+            sorry_no_results: Désolé ! Aucun résultat.
+            no_items_yet: Il n'y a actuellement aucun(e) Order. Cliquer sur "Créer
+              un(e) nouve(au/l/lle) Order" pour créer votre premi(er/ère) order.
+          order:
+            view_live_html: Voir ce(t/tte) order <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier ce(t/tte) order
+            delete: Supprimer définitivement ce(t/tte) order
+      orders:
+        show:
+          other: Autres Orders
+    products:
+      admin:
+        products:
+          actions:
+            create_new: Créer un(e) nouve(au/l/lle) Product
+            reorder: Réordonner les Products
+            reorder_done: Fin de réordonnancement des Products
+          records:
+            title: Products
+            sorry_no_results: Désolé ! Aucun résultat.
+            no_items_yet: Il n'y a actuellement aucun(e) Product. Cliquer sur "Créer
+              un(e) nouve(au/l/lle) Product" pour créer votre premi(er/ère) product.
+          product:
+            view_live_html: Voir ce(t/tte) product <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier ce(t/tte) product
+            delete: Supprimer définitivement ce(t/tte) product
+      products:
+        show:
+          other: Autres Products
+    stores:
+      admin:
+        stores:
+          actions:
+            create_new: Créer un(e) nouve(au/l/lle) Store
+            reorder: Réordonner les Stores
+            reorder_done: Fin de réordonnancement des Stores
+          records:
+            title: Stores
+            sorry_no_results: Désolé ! Aucun résultat.
+            no_items_yet: Il n'y a actuellement aucun(e) Store. Cliquer sur "Créer
+              un(e) nouve(au/l/lle) Store" pour créer votre premi(er/ère) store.
+          store:
+            view_live_html: Voir ce(t/tte) store <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier ce(t/tte) store
+            delete: Supprimer définitivement ce(t/tte) store
+      stores:
+        show:
+          other: Autres Stores
+  activerecord:
+    attributes:
+      refinery/addresses/address:
+        customer: Customer
+        order: Order
+        is_billing: Is Billing
+        first_name: First Name
+        last_name: Last Name
+        phone: Phone
+        email: Email
+        address1: Address1
+        address2: Address2
+        city: City
+        state: State
+        zip: Zip
+        country: Country
+      refinery/orders/order:
+        order_number: Order Number
+        order_customer: Order Customer
+        order_status: Order Status
+        order_notes: Order Notes
+        shipping_type: Shipping Type
+        shipped_on: Shipped On
+        product_total: Product Total
+        shipping_charges: Shipping Charges
+        tax_charges: Tax Charges
+        cc_last4: Cc Last4
+        cc_card_type: Cc Card Type
+        cc_expiry_month: Cc Expiry Month
+        cc_expiry_year: Cc Expiry Year
+        cc_token: Cc Token
+        cc_purchased_on: Cc Purchased On
+      refinery/products/product:
+        store: Store
+        name: Name
+        code: Code
+        description: Description
+        date_available: Date Available
+        price: Price
+        size_width: Size Width
+        size_height: Size Height
+        size_depth: Size Depth
+        weight: Weight
+        tax_type: Tax Type
+        digital_download: Digital Download
+        main_pic: Main Pic
+        inactive: Inactive
+      refinery/stores/store:
+        name: Name
+        meta_keywords: Meta Keywords
+        description: Description
+        is_active: Is Active

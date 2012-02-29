@@ -1,0 +1,13 @@
+<% content_for :stylesheets, stylesheet_link_tag('refinery/refinerycms-stores')%>
+
+
+<section id='records'>
+  <%= render 'records' %>
+  </section>
+
+<aside id='actions' class='multilist'>
+  <%= render 'actions' %>
+  </aside>
+
+<%= render '/refinery/admin/make_sortable', :tree => false if !searching? and ::Refinery::Stores::Admin::StoresController.sortable? and ::Refinery::Stores::Store.count > 1 %>
+

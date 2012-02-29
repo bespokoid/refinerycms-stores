@@ -1,0 +1,36 @@
+- content_for :body_content_title do
+  %h1 
+    Order Number:  
+    = @order.order_number
+
+- content_for :body_content_left do
+  %section
+    %h1 Order Status
+    %p
+      = raw @order.order_status
+  %section
+    %h1 Shipping Type
+    %p
+      = raw @order.shipping_type
+  %section
+    %h1 Shipped On
+    %p
+      = raw @order.shipped_on
+  %section
+    %h1 Poduct Cost
+    %p
+      = raw @order.poduct_cost
+  %section
+    %h1 Shipping Cost
+    %p
+      = raw @order.shipping_cost
+  %section
+    %h1 Tax Cost
+    %p
+      = raw @order.tax_cost
+
+- content_for :body_content_right do
+  %aside
+    %h2= t('.other')
+
+= render "/refinery/content_page"

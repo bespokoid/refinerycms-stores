@@ -1,0 +1,58 @@
+- content_for :stylesheets do
+  = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+  = javascript_include_tag "https://js.stripe.com/v1/"
+
+  :javascript
+    Stripe.setPublishableKey( '#{@payment_api_key}' );
+
+    function stripeResponseHandler(status, response) {
+        if (response.error) {
+            // re-enable the submit button
+            $('.submit-button').removeAttr("disabled");
+            // show the errors on the form
+            $(".payment-errors").html(response.error.message);
+        } else {
+            var form$ = $("#payment-form");
+            // token contains id, last4, and card type
+            var token = response['id'];
+            // insert the token into the form so it gets submitted to the server
+            form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+            // and submit
+            form$.get(0).submit();
+        }
+    }
+
+    $(document).ready(function() {
+        $("#payment-form").submit(function(event) {
+            // disable the submit button to prevent repeated clicks
+            $('.submit-button').attr("disabled", "disabled");
+            // createToken returns immediately - the supplied callback submits the form if there are no errors
+            // errors of all kinds will be handled by above stripeResponseHandler function and 
+            // display in .payment-errors section of form
+            Stripe.createToken({
+                number: $('.card-number').val(),
+                cvc: $('.card-cvc').val(),
+                exp_month: $('.card-expiry-month').val(),
+                exp_year: $('.card-expiry-year').val()
+            }, stripeResponseHandler);
+            return false; // submit from callback
+        });
+    });
+
+-# expects to be wrapped within a form: %form{ :method => 'post', :id => 'payment-form' }
+-# expects a submit button like this:  %button( type="submit" class="submit-button">Submit Payment</button )
+.cc-form-errors
+  %span.payment-errors
+    
+.cc-form-row
+  = label_tag 'Card Number'
+  %input(type="text" size="20" autocomplete="off" class="card-number")
+.cc-form-row
+  = label_tag 'CVC'
+  %input(type="text" size="4" autocomplete="off" class="card-cvc")
+.cc-form-row
+  = label_tag 'Expiration (MM/YYYY)'
+  %input(type="text" size="2" autocomplete="off" class="card-expiry-month")
+  \/
+  %input(type="text" size="4" autocomplete="off" class="card-expiry-year")
+

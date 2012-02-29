@@ -1,0 +1,20 @@
+- content_for :stylesheets do
+  = stylesheet_link_tag('refinery/refinerycms-stores')
+
+- content_for :body_content_title do
+  %h1 Purchase Confirmation
+
+- content_for :body_content_left do
+
+  %section
+    %h3 Thank you for your purchase
+
+    = link_to( "continue &raquo;".html_safe, refinery.stores_stores_path( ) )
+
+- content_for :body_content_right do
+  %aside
+    - @action = :purchase_confirmation
+    = render :partial => "order_snapshot", :object => @order
+
+= render "/refinery/content_page"
+
