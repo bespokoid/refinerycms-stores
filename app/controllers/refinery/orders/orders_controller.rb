@@ -41,6 +41,7 @@ module Refinery
 
         # displays the successful purchase page
       def purchase
+        Stripe.api_key = secret_key
         @order.confirm_purchase!
         if @order.errors.empty?
 

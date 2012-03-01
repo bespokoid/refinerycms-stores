@@ -5,6 +5,7 @@ module Refinery
 
   module Orders
     require 'refinery/orders/engine'
+    require 'refinery/orders/configuration'
 
     class << self
       attr_writer :root
