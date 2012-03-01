@@ -284,6 +284,18 @@ module Refinery
   # order_confirmed -- things to do after user confirmed purchase decision
 # ---------------------------------------------------------------------------
   def order_confirmed()
+    
+
+    # get the credit card details submitted by the form
+    token = params[:stripeToken]
+
+    # create the charge on Stripe's servers - this will charge the user's card
+    charge = Stripe::Charge.create(
+      :amount => 1000, # amount in cents, again
+      :currency => "usd",
+      :card => self.cc_token,
+      :description => "payinguser@example.com"
+    )
     # tell payment gateway to authorize purchase
     # if successful: self.payment_verified!
     

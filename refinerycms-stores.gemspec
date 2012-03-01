@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency             'haml-rails'
   s.add_dependency             'hpricot'
   s.add_dependency             'ruby_parser'
+  s.add_dependency             'stripe'
 
   # Development dependencies (usually used for testing)
   s.add_development_dependency 'refinerycms-testing', '~> 2.0.0'
