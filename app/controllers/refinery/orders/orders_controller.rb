@@ -84,7 +84,7 @@ module Refinery
       end
 
       def setup_payment_gateway
-        @payment_gateway = StoreGateway.new( @order.line_items.first.product.store )
+        @payment_gateway = ::Refinery::StoreGateway.new( @order.line_items.first.product.store )
       end
 
       def prep_edit_view
