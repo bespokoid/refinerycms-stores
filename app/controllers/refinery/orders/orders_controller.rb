@@ -8,6 +8,7 @@ module Refinery
 
       before_filter :find_all_orders, :only => :index
       before_filter :find_order, :except => :index
+      before_filter :setup_payment_gateway, :only => [:edit, :update, :purchase, :re_edit]
 
       def index
         # you can use meta fields from your model instead (e.g. browser_title)
@@ -80,18 +81,14 @@ module Refinery
         @page = ::Refinery::Page.where(:link_url => "/orders").first
       end
 
+      def setup_payment_gateway
+        @payment_gateway = StoreGateway.new( @order.line_items.first.product.store )
+      end
+
       def prep_edit_view
         if @billing_address.nil?
           @billing_address, @shipping_address = @order.get_billship_addresses
         end
-        # setup the keys for the payment gateway
-        # TODO: make this variable by gateway type
-        payment_gateway = "stripe"
-        payment_mode = ( Rails.env.production?  ?  'live'  :  'test' )
-        payment_settings = "#{payment_gateway}_#{payment_mode}"
-        @payment_access_url = ::Refinery::Setting.find_or_set( "#{payment_settings}_access_url".to_sym, "access URL missing" )
-        @payment_secret_key = ::Refinery::Setting.find_or_set( "#{payment_settings}_secret_key".to_sym, "secret key missing" )
-        @payment_api_key    = ::Refinery::Setting.find_or_set( "#{payment_settings}_api_key".to_sym,    "API key missing" )
       end
 
     end   #  class OrdersController
