@@ -39,16 +39,39 @@ module Refinery
 # ---------------------------------------------------------------------------
     def store_name
       str = @store.name
-      str << ": TEST MODE " if @gateway_mode == "test"
+      str << " [TEST MODE]" if @gateway_mode == "test"
       return str
     end
 
 # ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
-    def purchase_description( billee )
-      "purchase for " + billee.email.to_s
+    def purchase_description( order_nbr, email )
+      "#{store_name } Order: #{order_nbr.to_s} purchase for: #{email.to_s}"
     end
 
+# ---------------------------------------------------------------------------
+# charge_purchase -- charge customer card for purchase
+    # args:
+    #   token -- string for CC token produced earlier
+    #   amount -- float amt for charge in dollars.cents
+    #   order_nbr -- integer order number
+    #   email -- customer email
+# ---------------------------------------------------------------------------
+    def charge_purchase( token, amount, order_nbr, email )
+        # secret_key for Stripe
+      Stripe.api_key = @payment_secret_key
+ 
+        # create the charge on Stripe's servers
+        # this will charge the user's card
+
+      charge = Stripe::Charge.create(
+        :amount => (amount * 100).to_i, # amount in cents
+        :currency => "usd",             # US$
+        :card => token,
+        :description => purchase_description( order_nbr, email )
+      )
+
+    end
 
 # ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------

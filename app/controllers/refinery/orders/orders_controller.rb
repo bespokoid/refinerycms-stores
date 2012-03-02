@@ -42,12 +42,14 @@ module Refinery
 
         # displays the successful purchase page
       def purchase
-        Stripe.api_key = secret_key
+
         @order.confirm_purchase!
+
+        @order.process_purchase( @payment_gateway )
+        
         if @order.errors.empty?
 
-          # TODO: remove the following; this is for test only
-          @order.payment_verified!  unless Rails.env.production?
+          @order.payment_verified! 
 
           flash[:notice] = "thank you for your purchase"
         else

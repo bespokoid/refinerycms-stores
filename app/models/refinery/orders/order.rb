@@ -1,6 +1,10 @@
 module Refinery
   module Orders
 # #########################################################################
+    class OrderProcessingException < SecurityError; end
+# #########################################################################
+# #########################################################################
+# #########################################################################
     class Order < Refinery::Core::BaseModel
 
       require 'aasm'
@@ -266,7 +270,21 @@ module Refinery
 
 
 # ---------------------------------------------------------------------------
+  # process_purchase -- charges CC for the purchase
 # ---------------------------------------------------------------------------
+  def process_purchase( store_gateway )
+    raise OrderProcessingException unless self.purchase_confirmed?
+
+    result = store_gateway.charge_purchase( 
+        self.cc_token, 
+        self.product_total + self.shipping_charges + self.tax_charges, 
+        self.order_number, 
+        self.billing_address.email
+    )
+
+    # TODO: handle errors in order.errors
+
+  end
 
 # ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
@@ -277,30 +295,17 @@ module Refinery
   # edit_done -- things to do after edit input & verified
 # ---------------------------------------------------------------------------
   def edit_done()
+    
   end
 
 # ---------------------------------------------------------------------------
   # order_confirmed -- things to do after user confirmed purchase decision
 # ---------------------------------------------------------------------------
   def order_confirmed()
-    
-
-    # get the credit card details submitted by the form
-    token = params[:stripeToken]
-
-    # create the charge on Stripe's servers - this will charge the user's card
-    charge = Stripe::Charge.create(
-      :amount => 1000, # amount in cents, again
-      :currency => "usd",
-      :card => self.cc_token,
-      :description => "payinguser@example.com"
-    )
-    # tell payment gateway to authorize purchase
-    # if successful: self.payment_verified!
-    
-    # else: 
-    #   self.purchase_failed!
-    #   self.errors( add error entry )
+    self.product_total = total_price
+    # shipping_charges
+    # tax_charges
+    save!
   end
 
 # ---------------------------------------------------------------------------
