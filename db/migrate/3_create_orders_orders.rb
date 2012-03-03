@@ -11,12 +11,13 @@ class CreateOrdersOrders < ActiveRecord::Migration
       t.float :product_total, :default => 0.0, :limit => 10
       t.float :shipping_charges, :default => 0.0, :limit => 10
       t.float :tax_charges, :default => 0.0, :limit => 5
+      t.string :cc_token
       t.string :cc_last4, :limit => 8
       t.string :cc_card_type, :limit => 32
       t.integer :cc_expiry_month
       t.integer :cc_expiry_year
-      t.string :cc_token
       t.datetime :cc_purchased_on
+      t.string  :cc_confirmation_id
       t.integer :position
 
       t.timestamps

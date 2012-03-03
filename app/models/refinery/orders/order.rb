@@ -271,6 +271,7 @@ module Refinery
 
 # ---------------------------------------------------------------------------
   # process_purchase -- charges CC for the purchase
+  # returns nil if error (self.errors captures), or result JSON obj
 # ---------------------------------------------------------------------------
   def process_purchase( store_gateway )
     raise OrderProcessingException unless self.purchase_confirmed?
@@ -278,13 +279,19 @@ module Refinery
     result = store_gateway.charge_purchase( 
         self.cc_token, 
         self.product_total + self.shipping_charges + self.tax_charges, 
-        self.order_number, 
+        self, 
         self.billing_address.email
     )
 
-    # TODO: handle errors in order.errors
-puts "****************>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>****************"
-puts result.inspect
+    unless result.nil?  # unless there were errors ...
+      self.cc_purchased_on = Time.now         # date of purchase
+      self.cc_confirmation_id = result.id     # confirmation code
+        # next step saves above changes IFF paid is true
+      self.payment_verified! if result.paid   # state becomes paid & final
+    end   # unless there were errors
+
+    return result
+
   end
 
 # ---------------------------------------------------------------------------

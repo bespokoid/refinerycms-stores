@@ -8,6 +8,7 @@
 
   %section
     %h3 Thank you for your purchase
+    %h3 Confirmation code: #{@order.cc_confirmation_id}
 
     = link_to( "continue &raquo;".html_safe, refinery.stores_stores_path( ) )
 

@@ -53,13 +53,15 @@ module Refinery
 
 # ---------------------------------------------------------------------------
 # charge_purchase -- charge customer card for purchase
+    # return nil if error; else the JSON charge object from Stripe
     # args:
     #   token -- string for CC token produced earlier
     #   amount -- float amt for charge in dollars.cents
-    #   order_nbr -- integer order number
+    #   order -- order object
     #   email -- customer email
 # ---------------------------------------------------------------------------
-    def charge_purchase( token, amount, order_nbr, email )
+    def charge_purchase( token, amount, order, email )
+    begin
         # secret_key for Stripe
       Stripe.api_key = @payment_secret_key
  
@@ -70,8 +72,18 @@ module Refinery
         :amount => (amount * 100).to_i, # amount in cents
         :currency => "usd",             # US$
         :card => token,
-        :description => purchase_description( order_nbr, email )
+        :description => purchase_description( order.order_number, email )
       )
+
+      return charge
+
+    rescue ::Stripe::StripeError
+      order.errors.add($!.class.to_s,  $!.to_s )  # capture errors to base object
+      # order.errors.add(:cc_token, $!.class.to_s + ": " + $!.to_s )  # capture errors to base object
+      return nil
+
+    end  # begin .. end for exceptions
+
 
     end
 

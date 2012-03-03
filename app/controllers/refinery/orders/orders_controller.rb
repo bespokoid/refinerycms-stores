@@ -44,17 +44,13 @@ module Refinery
       def purchase
 
         @order.confirm_purchase!
-
         @order.process_purchase( @payment_gateway )
         
         if @order.errors.empty?
-
-          @order.payment_verified! 
-
           flash[:notice] = "thank you for your purchase"
         else
           flash[:notice] = "we could not complete your purchase"
-          edit
+          re_edit   # changes state back
         end
       end
 
