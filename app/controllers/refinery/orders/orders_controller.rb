@@ -47,10 +47,11 @@ module Refinery
         @order.process_purchase( @payment_gateway )
         
         if @order.errors.empty?
-          flash[:notice] = "thank you for your purchase"
+          @action = :purchase_complete
+          @purchase_status = "thank you for your purchase"
         else
-          flash[:notice] = "we could not complete your purchase"
-          re_edit   # changes state back
+          @action = :purchase_pending
+          @purchase_status = "Purchase unsuccessful; please correct errors and try again."
         end
       end
 

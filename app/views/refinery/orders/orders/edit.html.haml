@@ -8,6 +8,8 @@
 
   %section
     .modal-form.basic-form
+      = @order.errors.full_messages.inspect
+      = render '/refinery/admin/error_messages', :object => @order, :include_object_name => true 
       = form_tag( refinery.orders_order_path(@order), :method => :put, :id => 'payment-form' ) do
         %h3 Your Billing Information
         = render( :partial => "address_form", :object => @billing_address,  :locals => { :as_name => :billing_address } )

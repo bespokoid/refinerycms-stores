@@ -2,19 +2,23 @@
   = stylesheet_link_tag('refinery/refinerycms-stores')
 
 - content_for :body_content_title do
-  %h1 Purchase Confirmation
+  %h1 Purchase Completed
 
 - content_for :body_content_left do
 
   %section
-    %h3 Thank you for your purchase
-    %h3 Confirmation code: #{@order.cc_confirmation_id}
-
-    = link_to( "continue &raquo;".html_safe, refinery.stores_stores_path( ) )
+    %h3= @purchase_status 
+    - if @order.errors.empty?
+      %h3 Confirmation code: #{@order.cc_confirmation_id}
+      = link_to( "continue &raquo;".html_safe, refinery.stores_stores_path( ) )
+    - else
+      = render '/refinery/admin/error_messages', :object => @order, :include_object_name => true 
+      = link_to( 'cancel', refinery.cancel_order_orders_order_path( @order ) )
+      = button_to( "change",   refinery.re_edit_orders_order_path( @order ),   :class => "re_edit-cart" )
+ 
 
 - content_for :body_content_right do
   %aside
-    - @action = :purchase_confirmation
     = render :partial => "order_snapshot", :object => @order
 
 = render "/refinery/content_page"
