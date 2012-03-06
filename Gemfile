@@ -15,6 +15,7 @@ group :development, :test do
 
   gem 'rb-inotify', '>= 0.5.1'
   gem 'libnotify',  '~> 0.1.3'
+  gem 'therubyracer'
 
 end  # group do
 
