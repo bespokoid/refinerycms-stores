@@ -23,6 +23,5 @@ gem 'aasm', '>3.0'
 gem 'hpricot'
 gem 'ruby_parser'
 gem 'haml-rails'
-gem 'stripe'
-
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
