@@ -4,13 +4,6 @@ gemspec
 
 gem 'refinerycms', '~> 2.0.0'
 
-# Refinery/rails should pull in the proper versions of these
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-end
-
 gem 'jquery-rails'
 
 group :development, :test do
@@ -24,3 +17,11 @@ group :development, :test do
   gem 'libnotify',  '~> 0.1.3'
 
 end  # group do
+
+gem 'aasm', '>3.0'
+gem 'hpricot'
+gem 'ruby_parser'
+gem 'haml-rails'
+gem 'stripe'
+
+
