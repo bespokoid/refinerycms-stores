@@ -2,9 +2,14 @@ PATH
   remote: .
   specs:
     refinerycms-stores (0.0.1)
+      aasm (> 3.0)
+      haml-rails
+      hpricot
       jquery-rails
       refinerycms (~> 2.0.0)
       refinerycms-stores
+      ruby_parser
+      stripe
 
 GEM
   remote: http://rubygems.org/
