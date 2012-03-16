@@ -10,7 +10,7 @@
    <%= link_to( ( truncate( list_product.name, :length => 60 ) + " &raquo;" ).html_safe, refinery.products_product_path( list_product ) ) %>
    <br/>
    $<%= number_with_precision(list_product.price, :precision => 2) %>
-   <%= button_to( "add to cart", refinery.add_to_cart_stores_stores_path(:id => list_product), :class => "add-to-cart" ) %>
+   <% # = button_to( "add to cart", refinery.add_to_cart_stores_stores_path(:id => list_product), :class => "add-to-cart" ) %>
   
    </dd>
 </dl>
