@@ -340,7 +340,7 @@ module Refinery
 # ---------------------------------------------------------------------------
   def generate_order_number
     nbr = 0 
-    max = 0xfffffffe
+    max = 0x7ffffffe
     tries = max  # deadman counter to prevent infinite loop
 
     while ( tries > 0  &&  Order.find_by_order_number(nbr = rand( max ) + 1) ) do
