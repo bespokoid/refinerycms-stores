@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "refinerycms-stores"
-  s.version = "0.0.5"
+  s.version = "0.0.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daudi Amani"]
@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "app/controllers/refinery/products/products_controller.rb",
     "app/controllers/refinery/stores/admin/stores_controller.rb",
     "app/controllers/refinery/stores/stores_controller.rb",
+    "app/controllers/refinery/stores_application_controller.rb",
     "app/helpers/refinery/orders/orders_helper.rb",
     "app/models/refinery/addresses/address.rb",
     "app/models/refinery/orders/line_item.rb",
@@ -222,6 +223,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rb-inotify>, [">= 0.5.1"])
       s.add_development_dependency(%q<libnotify>, ["~> 0.1.3"])
       s.add_development_dependency(%q<therubyracer>, [">= 0"])
+      s.add_development_dependency(%q<refinerycms-testing>, ["~> 2.0.0"])
+      s.add_development_dependency(%q<factory_girl_rails>, [">= 0"])
+      s.add_development_dependency(%q<generator_spec>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<simplecov>, [">= 0"])
+      s.add_development_dependency(%q<rb-inotify>, [">= 0.5.1"])
+      s.add_development_dependency(%q<libnotify>, ["~> 0.1.3"])
+      s.add_development_dependency(%q<therubyracer>, [">= 0"])
     else
       s.add_dependency(%q<refinerycms-stores>, [">= 0"])
       s.add_dependency(%q<refinerycms>, ["~> 2.0.0"])
@@ -279,6 +288,14 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<simplecov>, [">= 0"])
       s.add_dependency(%q<rb-inotify>, [">= 0.5.1"])
       s.add_dependency(%q<libnotify>, ["~> 0.1.3"])
+      s.add_dependency(%q<refinerycms-testing>, ["~> 2.0.0"])
+      s.add_dependency(%q<factory_girl_rails>, [">= 0"])
+      s.add_dependency(%q<generator_spec>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<simplecov>, [">= 0"])
+      s.add_dependency(%q<rb-inotify>, [">= 0.5.1"])
+      s.add_dependency(%q<libnotify>, ["~> 0.1.3"])
+      s.add_dependency(%q<therubyracer>, [">= 0"])
       s.add_dependency(%q<refinerycms-testing>, ["~> 2.0.0"])
       s.add_dependency(%q<factory_girl_rails>, [">= 0"])
       s.add_dependency(%q<generator_spec>, [">= 0"])
@@ -361,6 +378,14 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<simplecov>, [">= 0"])
     s.add_dependency(%q<rb-inotify>, [">= 0.5.1"])
     s.add_dependency(%q<libnotify>, ["~> 0.1.3"])
+    s.add_dependency(%q<refinerycms-testing>, ["~> 2.0.0"])
+    s.add_dependency(%q<factory_girl_rails>, [">= 0"])
+    s.add_dependency(%q<generator_spec>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<simplecov>, [">= 0"])
+    s.add_dependency(%q<rb-inotify>, [">= 0.5.1"])
+    s.add_dependency(%q<libnotify>, ["~> 0.1.3"])
+    s.add_dependency(%q<therubyracer>, [">= 0"])
     s.add_dependency(%q<refinerycms-testing>, ["~> 2.0.0"])
     s.add_dependency(%q<factory_girl_rails>, [">= 0"])
     s.add_dependency(%q<generator_spec>, [">= 0"])
