@@ -19,7 +19,7 @@
 
      <div class="product_text">
 
-       <h2> <%= @product.name %> </h2>
+       <h1> <%= @product.name %> </h1>
         <p>
           <%= raw @product.description %>
         </p>
@@ -50,9 +50,9 @@
 
      <div class="product_pricebuy">
 
-        <p>
+        <h2>
           <%= number_to_currency(@product.price) %>
-        </p>
+        </h2>
 
         <div class="product-action">
          <%= button_to( "add to cart", refinery.add_to_cart_stores_stores_path(:id => @product), :class => "add-to-cart" ) %>
