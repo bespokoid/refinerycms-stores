@@ -3,103 +3,72 @@
 <% end %>
 
 <% content_for :body_content_left do %>
-  <section>
-    <h1>Store</h1>
-    <p>
-      <%=raw @product.store %>
-    </p>
+  <section id="product">
+
+   <div class="product_show">
+
+     <div class="product_photo">
+
+       <% if @product.main_pic_id -%>
+          <%= image_fu @product.main_pic, Refinery::Images.user_image_sizes[:large], :class => "product-pic", :alt =>  @product.name  %>
+       <% else -%>
+         &nbsp;
+       <% end %>
+
+     </div>
+
+     <div class="product_text">
+
+        <h2> @product.name </h2>
+        <p>
+          <%=raw @product.description %>
+        </p>
+
+     </div>
+
+   </div>
+
+   <div class="product_spec">
+
+     <div class="product_code">
+
+        <p>
+          #: <%= @product.code %>
+          <%= number_with_precision(@product.size_width, :precision => 1) %> x
+          <%= number_with_precision(@product.size_height, :precision => 1) %> x
+          <%= number_with_precision(@product.size_depth, :precision => 1) %>
+          <%= number_with_precision(@product.weight, :precision => 1) %> lbs
+
+          <% unless @product.digital_download_id.blank? %>
+            <i>digital download</i>
+          <% end -%>
+        </p>
+
+     </div>
+
+     <div class="product_pricebuy">
+
+        <p>
+          <%= number_to_currency(@product.price) %>
+        </p>
+
+        <div class="product-action">
+         <%= button_to( "add to cart", refinery.add_to_cart_stores_stores_path(:id => @product), :class => "add-to-cart" ) %>
+        </div>
+
+     </div>
+
+   </div>
+
   </section>
-  <section>
-    <h1>Name</h1>
-    <p>
-      <%=raw @product.name %>
-    </p>
-  </section>
-  <section>
-    <h1>Code</h1>
-    <p>
-      <%=raw @product.code %>
-    </p>
-  </section>
-  <section>
-    <h1>Description</h1>
-    <p>
-      <%=raw @product.description %>
-    </p>
-  </section>
-  <section>
-    <h1>Date Available</h1>
-    <p>
-      <%=raw @product.date_available %>
-    </p>
-  </section>
-  <section>
-    <h1>Price</h1>
-    <p>
-      <%=raw @product.price %>
-    </p>
-  </section>
-  <section>
-    <h1>Size Width</h1>
-    <p>
-      <%=raw @product.size_width %>
-    </p>
-  </section>
-  <section>
-    <h1>Size Height</h1>
-    <p>
-      <%=raw @product.size_height %>
-    </p>
-  </section>
-  <section>
-    <h1>Size Depth</h1>
-    <p>
-      <%=raw @product.size_depth %>
-    </p>
-  </section>
-  <section>
-    <h1>Weight</h1>
-    <p>
-      <%=raw @product.weight %>
-    </p>
-  </section>
-  <section>
-    <h1>Tax Type</h1>
-    <p>
-      <%=raw @product.tax_type %>
-    </p>
-  </section>
-  <section>
-    <h1>Digital Download</h1>
-    <p>
-      <%=raw @product.digital_download %>
-    </p>
-  </section>
-  <section>
-    <h1>Main Pic</h1>
-    <p>
-      <%=raw @product.main_pic %>
-    </p>
-  </section>
-  <section>
-    <h1>Inactive</h1>
-    <p>
-      <%=raw @product.inactive %>
-    </p>
-  </section>
+
 <% end %>
 
 <% content_for :body_content_right do %>
   <aside>
-    <h2><%= t('.other') %></h2>
-    <ul id="products">
-      <% @products.each do |product| %>
-        <li>
-          <%= link_to product.name, refinery.products_product_path(product) %>
-        </li>
-      <% end %>
-    </ul>
+      <%= render( :partial => "refinery/stores/stores/cart", :object => @cart ) %>
   </aside>
+
 <% end %>
 
 <%= render '/refinery/content_page' %>
