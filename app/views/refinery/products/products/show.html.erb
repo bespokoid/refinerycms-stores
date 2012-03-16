@@ -19,9 +19,9 @@
 
      <div class="product_text">
 
-        <h2> @product.name </h2>
+       <h2> <%= @product.name %> </h2>
         <p>
-          <%=raw @product.description %>
+          <%= raw @product.description %>
         </p>
 
      </div>
@@ -33,10 +33,12 @@
      <div class="product_code">
 
         <p>
-          #: <%= @product.code %>
+          code: <%= @product.code %> <br/>
+          size: 
           <%= number_with_precision(@product.size_width, :precision => 1) %> x
           <%= number_with_precision(@product.size_height, :precision => 1) %> x
-          <%= number_with_precision(@product.size_depth, :precision => 1) %>
+          <%= number_with_precision(@product.size_depth, :precision => 1) %> <br/>
+          weight: 
           <%= number_with_precision(@product.weight, :precision => 1) %> lbs
 
           <% unless @product.digital_download_id.blank? %>

@@ -1,6 +1,6 @@
 module Refinery
   module Stores
-    class StoresController < ::ApplicationController
+    class StoresController < ::Refinery::StoresApplicationController
 
       before_filter :find_all_stores, :only => :index
       before_filter :find_page, :except => [:index, :add_to_cart, :empty_cart, :checkout]
@@ -55,11 +55,7 @@ module Refinery
     redirect_to refinery.stores_store_path( find_first_store )
   end
     
-  
-  def find_cart
-    @cart = (session[:cart] ||= Cart.new)
-  end
-  
+ 
     protected
 
       def find_first_store
