@@ -3,33 +3,35 @@
     = render :partial => "/refinery/admin/error_messages", :locals => { :object => address_form, :include_object_name => true }
 
     %fieldset.modal-fieldset.clearfix2
-      = f.label( :first_name, 'First Name*' ) 
-      = f.text_field( :first_name )
+      #lefthand-fields
+        = f.label( :first_name, 'First Name*' ) 
+        = f.text_field( :first_name )
 
-      = f.label( :last_name, 'Last Name*' ) 
-      = f.text_field( :last_name )
+        = f.label( :email, 'email') 
+        = f.email_field( :email )
 
-      = f.label( :phone, 'phone' ) 
-      = f.telephone_field( :phone )
+        = f.label( :address1, 'address1*') 
+        = f.text_field( :address1 )
 
-      = f.label( :email, 'email') 
-      = f.email_field( :email )
+        = f.label( :city, 'city*') 
+        = f.text_field( :city )
 
-      = f.label( :address1, 'address1*') 
-      = f.text_field( :address1 )
+        = f.label( :state, 'state*' ) 
+        = f.text_field( :state )
 
-      = f.label( :address2, 'address2' ) 
-      = f.text_field( :address2 )
-     
-      = f.label( :city, 'city*') 
-      = f.text_field( :city )
+      #righthand-fields
+        = f.label( :last_name, 'Last Name*' ) 
+        = f.text_field( :last_name )
 
-      = f.label( :state, 'state*' ) 
-      = f.text_field( :state )
+        = f.label( :phone, 'phone' ) 
+        = f.telephone_field( :phone )
 
-      = f.label( :zip, 'zip*' ) 
-      = f.text_field( :zip )
+        = f.label( :address2, 'address2' ) 
+        = f.text_field( :address2 )
+       
+        = f.label( :zip, 'zip*' ) 
+        = f.text_field( :zip )
 
-      = f.label( :country, 'country*' ) 
-      = f.text_field( :country )
+        = f.label( :country, 'country*' ) 
+        = f.text_field( :country )
 

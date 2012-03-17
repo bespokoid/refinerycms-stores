@@ -46,18 +46,21 @@
 
 -# expects to be wrapped within a form: %form{ :method => 'post', :id => 'payment-form' }
 -# expects a submit button like this:  %button( type="submit" class="submit-button">Submit Payment</button )
-.cc-form-errors
-  %span.payment-errors
-    
-.cc-form-row
-  = label_tag 'Card Number'
-  %input(type="text" size="20" autocomplete="off" class="card-number")
-.cc-form-row
-  = label_tag 'CVC'
-  %input(type="text" size="4" autocomplete="off" class="card-cvc")
-.cc-form-row
-  = label_tag 'Expiration (MM/YYYY)'
-  %input(type="text" size="2" autocomplete="off" class="card-expiry-month")
-  \/
-  %input(type="text" size="4" autocomplete="off" class="card-expiry-year")
+%fieldset.modal-fieldset
+ 
+  .cc-form-errors
+    %span.payment-errors
+      
+  .form-lines.no-width
+    .cc-form-row
+      = label_tag 'Card Number'
+      %input(type="text" size="20" autocomplete="off" class="card-number")
+    .cc-form-row
+      = label_tag 'CVC'
+      %input(type="text" size="4" autocomplete="off" class="card-cvc")
+    .cc-form-row
+      = label_tag 'Expiration (MM/YYYY)'
+      %input(type="text" size="2" autocomplete="off" class="card-expiry-month")
+      \/
+      %input(type="text" size="4" autocomplete="off" class="card-expiry-year")
 
