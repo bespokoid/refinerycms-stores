@@ -14,9 +14,10 @@
         = render( :partial => "address_form", :object => @billing_address,  :locals => { :as_name => :billing_address } )
           
         %h3 Your Shipping Information
-        = check_box_tag( :use_billing, '1', false, { :onclick => "$('#shipping_address').toggle();" } )
-        = label_tag( :use_billing, 'use billing address for shipping', {:title => "use billing address for shipping"} )
-
+        .form-lines.no-width
+          = check_box_tag( :use_billing, '1', false, { :onclick => "$('#shipping_address').toggle();" } )
+          = label_tag( :use_billing, 'use billing address for shipping', {:title => "use billing address for shipping"} )
+        %br
         = render( :partial => "address_form", :object => @shipping_address, :locals => { :as_name => :shipping_address } )
 
         %h3 Your Payment Method

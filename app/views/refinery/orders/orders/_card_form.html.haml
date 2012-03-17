@@ -51,16 +51,13 @@
   .cc-form-errors
     %span.payment-errors
       
-  .form-lines.no-width
-    .cc-form-row
-      = label_tag 'Card Number'
-      %input(type="text" size="20" autocomplete="off" class="card-number")
-    .cc-form-row
-      = label_tag 'CVC'
-      %input(type="text" size="4" autocomplete="off" class="card-cvc")
-    .cc-form-row
-      = label_tag 'Expiration (MM/YYYY)'
-      %input(type="text" size="2" autocomplete="off" class="card-expiry-month")
-      \/
-      %input(type="text" size="4" autocomplete="off" class="card-expiry-year")
+  .cc-form-row.form-lines.no-width
+    = label_tag 'Card Number'
+    %input(type="text" size="20" autocomplete="off" class="card-number")
+    = label_tag 'CVC'
+    %input(type="text" size="4" autocomplete="off" class="card-cvc")
+    = label_tag 'Expiration (MM/YYYY)'
+    %input(type="text" size="2" autocomplete="off" class="card-expiry-month")
+    \/
+    %input(type="text" size="4" autocomplete="off" class="card-expiry-year")
 
