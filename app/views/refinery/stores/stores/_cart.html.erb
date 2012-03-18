@@ -1,7 +1,7 @@
 <div id='cart'>
 
   <div class="cart-title">
-    <h3>Your Cart</h3>
+    <h3><%= cart.store_name %> Cart</h3>
     <% if cart.items.empty? -%>
       <p><i>Your cart is empty; click add-to-cart to add products.</i></p>
     <% end -%>

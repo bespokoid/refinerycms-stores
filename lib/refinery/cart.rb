@@ -4,10 +4,11 @@ module Refinery
 
   class Cart
 
-    attr_reader  :items
+    attr_reader  :items, :store_name
 
-    def initialize()
+    def initialize( store="Your" )
       @items = []
+      @store_name = store
     end
 
   def add_product(product)

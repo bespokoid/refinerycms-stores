@@ -3,6 +3,7 @@ module Refinery
     class StoresController < ::Refinery::StoresApplicationController
 
       before_filter :find_first_store, :only => :index
+      before_filter :find_store, :only => :show
       before_filter :find_page, :except => [:index, :add_to_cart, :empty_cart, :checkout]
       before_filter :find_cart, :except => :empty_cart
 
@@ -18,7 +19,6 @@ module Refinery
       end
 
       def show
-        @store = Store.find(params[:id])
 
         # you can use meta fields from your model instead (e.g. browser_title)
         # by swapping @page for @store in the line below:
@@ -63,13 +63,12 @@ module Refinery
  
     protected
 
-      def find_first_store
-        @store = Store.where(:is_active => true).order('position ASC').first
-      end
-
-
       def find_all_stores
         @stores = Store.order('position ASC')
+      end
+
+      def find_store
+        @store = Store.find(params[:id])
       end
 
       def find_page
