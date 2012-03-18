@@ -7,9 +7,10 @@
 
 <% content_for :body_content_left do %>
    <section>
-    <p>
+    <h1>
+  <%= @store.name %>
+    </h1>
       <%=raw @store.description %>
-    </p>
   </section>
 
    <section class='catalog-brief-list' >

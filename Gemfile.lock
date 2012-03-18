@@ -8,7 +8,7 @@ GIT
 PATH
   remote: .
   specs:
-    refinerycms-stores (0.0.12)
+    refinerycms-stores (0.0.13)
       aasm (> 3.0)
       haml-rails
       hpricot
