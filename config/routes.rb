@@ -1,6 +1,8 @@
 Refinery::Core::Engine.routes.draw do
 
+# ###################################################################
   # Frontend routes
+# ###################################################################
   namespace :stores do
     resources :stores, :only => [:index, :show]  do
       collection do
@@ -28,7 +30,19 @@ Refinery::Core::Engine.routes.draw do
   end
 
 
-  # Admin routes
+  namespace :orders do
+    resources :orders, :path => '', :only => [:index, :show]
+  end
+
+
+  namespace :customers do
+    resources :customers, :only => [:new, :create, :update, :edit]
+  end
+
+
+# ###################################################################
+  # Admin (backend) routes
+# ###################################################################
   namespace :stores, :path => '' do
     namespace :admin, :path => 'refinery' do
       resources :stores, :except => :show do
@@ -39,7 +53,6 @@ Refinery::Core::Engine.routes.draw do
     end
   end
 
-  # Admin routes
   namespace :products, :path => '' do
     namespace :admin, :path => 'refinery' do
       resources :products, :except => :show do
@@ -50,13 +63,6 @@ Refinery::Core::Engine.routes.draw do
     end
   end
 
-
-  # Frontend routes
-  namespace :orders do
-    resources :orders, :path => '', :only => [:index, :show]
-  end
-
-  # Admin routes
   namespace :orders, :path => '' do
     namespace :admin, :path => 'refinery' do
       resources :orders, :except => :show do
@@ -67,7 +73,6 @@ Refinery::Core::Engine.routes.draw do
     end
   end
 
-  # Admin routes
   namespace :addresses, :path => '' do
     namespace :admin, :path => 'refinery' do
       resources :addresses, :except => :show do
@@ -79,15 +84,4 @@ Refinery::Core::Engine.routes.draw do
   end
 
 
-  # Admin routes
-  namespace :customers, :path => '' do
-    namespace :admin, :path => 'refinery' do
-      resources :customers, :except => :show do
-        collection do
-          post :update_positions
-        end
-      end
-    end
-  end
-
-end
+end  # do namespace routes
