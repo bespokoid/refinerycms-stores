@@ -1,6 +1,8 @@
 fr:
   refinery:
     plugins:
+      customers:
+        title: Customers
       addresses:
         title: Addresses
       orders:
@@ -9,6 +11,25 @@ fr:
         title: Products
       stores:
         title: Stores
+    customers:
+      admin:
+        customers:
+          actions:
+            create_new: Créer un(e) nouve(au/l/lle) Customer
+            reorder: Réordonner les Customers
+            reorder_done: Fin de réordonnancement des Customers
+          records:
+            title: Customers
+            sorry_no_results: Désolé ! Aucun résultat.
+            no_items_yet: Il n'y a actuellement aucun(e) Customer. Cliquer sur "Créer
+              un(e) nouve(au/l/lle) Customer" pour créer votre premi(er/ère) customer.
+          customer:
+            view_live_html: Voir ce(t/tte) customer <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier ce(t/tte) customer
+            delete: Supprimer définitivement ce(t/tte) customer
+      customers:
+        show:
+          other: Autres Customers
     addresses:
       admin:
         addresses:
@@ -87,6 +108,8 @@ fr:
           other: Autres Stores
   activerecord:
     attributes:
+      refinery/customers/customer:
+        name: Name
       refinery/addresses/address:
         customer: Customer
         order: Order

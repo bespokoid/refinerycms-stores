@@ -1,6 +1,8 @@
 nl:
   refinery:
     plugins:
+      customers:
+        title: Customers
       addresses:
         title: Addresses
       orders:
@@ -9,6 +11,26 @@ nl:
         title: Products
       stores:
         title: Stores
+    customers:
+      admin:
+        customers:
+          actions:
+            create_new: Maak een nieuwe Customer
+            reorder: Wijzig de volgorde van de Customers
+            reorder_done: Klaar met het wijzingen van de volgorde van de Customers
+          records:
+            title: Customers
+            sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+            no_items_yet: Er zijn nog geen Customers. Druk op 'Maak een nieuwe Customer'
+              om de eerste aan te maken.
+          customer:
+            view_live_html: Bekijk deze customer op de website <br/><em>(opent een
+              nieuw venster)</em>
+            edit: Bewerk deze customer
+            delete: Verwijder deze customer voor eeuwig
+      customers:
+        show:
+          other: Andere Customers
     addresses:
       admin:
         addresses:
@@ -91,6 +113,8 @@ nl:
           other: Andere Stores
   activerecord:
     attributes:
+      refinery/customers/customer:
+        name: Name
       refinery/addresses/address:
         customer: Customer
         order: Order

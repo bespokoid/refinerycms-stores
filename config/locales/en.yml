@@ -1,6 +1,8 @@
 en:
   refinery:
     plugins:
+      customers:
+        title: Customers
       addresses:
         title: Addresses
       orders:
@@ -9,6 +11,25 @@ en:
         title: Products
       stores:
         title: Stores
+    customers:
+      admin:
+        customers:
+          actions:
+            create_new: Add New Customer
+            reorder: Reorder Customers
+            reorder_done: Done Reordering Customers
+          records:
+            title: Customers
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Customers yet. Click "Add New Customer" to
+              add your first customer.
+          customer:
+            view_live_html: View this customer live <br/><em>(opens in a new window)</em>
+            edit: Edit this customer
+            delete: Remove this customer forever
+      customers:
+        show:
+          other: Other Customers
     addresses:
       admin:
         addresses:
@@ -91,6 +112,8 @@ en:
           other: Other Stores
   activerecord:
     attributes:
+      refinery/customers/customer:
+        name: Name
       refinery/addresses/address:
         customer: Customer
         order: Order
