@@ -1,12 +1,13 @@
 #customer-profile
   .customer-actions
-    = pretty_customer_name( )
-    &ensp;
-    - if is_user_signed_in?
-      = link_to( "profile", "#", :title => "update your profile information" )
-      &nbsp;
-      = link_to( "sign out", "#", :title => "switch customer profile" )
-    -else
-      = link_to( "sign up", refinery.new_customers_customer_path, :title => "create a new customer profile" )
-      &nbsp;
-      = link_to( "sign in", refinery.new_refinery_user_session_path, :title => "sign into your customer profile" )
+    %p
+      = pretty_customer_name( )
+      &ensp;
+      - if is_user_signed_in?
+        = link_to( "profile", "#", :title => "update your profile information" )
+        &nbsp;
+        = link_to( "sign out", "#", :title => "switch customer profile" )
+      -else
+        = link_to( "sign up", refinery.new_customers_customer_path, :title => "create a new customer profile" )
+        &nbsp;
+        = link_to( "sign in", refinery.new_refinery_user_session_path, :title => "sign into your customer profile" )
