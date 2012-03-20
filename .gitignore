@@ -134,3 +134,5 @@ pkg
 
 # For rubinius:
 #*.rbc
+# Gemfile
+Gemfile.lock

@@ -34,7 +34,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/dsaronin@gmail.com/refinerycms-stores"
   gem.license = "MIT"
   gem.summary = %Q{refinerycms shopping cart engine}
-  gem.description = %Q{Complete engine for shopping cart to be used with a RefineryCMS project}
+  gem.description = %Q{Complete engine for Stripe gateway-based shopping cart to be used with a RefineryCMS project}
   gem.email = "dsaronin@gmail.com"
   gem.authors = ["Daudi Amani"]
   # dependencies defined in Gemfile
@@ -48,8 +48,8 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'simplecov'
-SimpleCov.start  'rails'
+# require 'simplecov'
+# SimpleCov.start  'rails'
 
 task :default => :test
 

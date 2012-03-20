@@ -2,23 +2,22 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', '~> 2.0.0'
-
-gem 'jquery-rails'
+gem 'refinerycms', '>= 2.0.0'
 
 group :development, :test do
-  gem 'refinerycms-testing', '~> 2.0.0'
-  gem 'factory_girl_rails'
-  gem 'generator_spec'
-  gem 'jeweler'
-  gem 'simplecov'
+#   gem 'refinerycms-testing', '~> 2.0.0'
+#   gem 'factory_girl_rails'
+#   gem 'generator_spec'
+#   gem 'simplecov'
 
-  gem 'rb-inotify', '>= 0.5.1'
-  gem 'libnotify',  '~> 0.1.3'
+#   gem 'rb-inotify', '>= 0.5.1'
+#   gem 'libnotify',  '~> 0.1.3'
+  gem 'jeweler'
   gem 'therubyracer'
 
 end  # group do
 
+gem 'jquery-rails'
 gem 'aasm', '>3.0'
 gem 'hpricot'
 gem 'ruby_parser'
