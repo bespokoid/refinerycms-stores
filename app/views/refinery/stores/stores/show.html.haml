@@ -1,0 +1,14 @@
+- content_for :stylesheets, stylesheet_link_tag('refinery/refinerycms-stores')
+- content_for :body_content_title do
+  = @store.name
+- content_for :body_content_left do
+  %section
+    %h1
+      = @store.name
+    = raw @store.description
+  %section.catalog-brief-list
+    = render :partial => "list_product", :collection => @store.active_products
+- content_for :body_content_right do
+  %aside
+    = render( :partial => "cart", :object => @cart  )
+= render "/refinery/content_page"

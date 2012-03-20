@@ -2,15 +2,10 @@ module Refinery
   module Customers
     class CustomersController < ApplicationController
 
-        CUSTOMER_ROLE_ID  = 4
-        MEMBER_ROLE_ID    = 3
-        REFINERY_ROLE_ID  = 2
-        SUPERUSER_ROLE_ID = 1
-
       crudify :customer
       
-      # Protect these actions behind customer login - do we need to check out not signing up when signed in?
       before_filter :redirect?, :except => [:new, :create]
+      before_filter :get_customer, :except => [:new, :create]
 
       def new
         @customer = Customer.new
@@ -18,13 +13,10 @@ module Refinery
 
       # GET /customers/:id/edit
       def edit
-        @customer = get_customer(params[:id])
-        @is_admin = is_admin?
       end
 
       # PUT /customers/:id
       def update
-        @customer = get_customer(params[:id])
 
         if params[:customer][:password].blank? and params[:customer][:password_confirmation].blank?
           params[:customer].delete(:password)
@@ -47,9 +39,9 @@ module Refinery
       def create
         @customer = Customer.new(params[:customer])
         @customer.username = @customer.email
-        @customer.customership_level = 'Customer'
 
         if @customer.save
+          @customer.roles << ::Refinery::Role[:customer]  # remember as a customer role
           
           redirect_to root_path 
 
@@ -65,17 +57,19 @@ module Refinery
 
       def redirect?
         if refinery_current_user.nil?
-          redirect_to new_user_session_path
+          redirect_to new_refinery_user_session_path
         end
       end
 
-      # unless you're an admin, you can only edit your profile
-      def get_customer(id)
-        is_admin? ?  Customer.find(id) : refinery_current_user
-      end
-
-      def is_admin?
-        !(refinery_current_user.role_ids & [REFINERY_ROLE_ID, SUPERUSER_ROLE_ID]).empty?
+      # ----------------------------------------------------------------------
+      # get_customer -- returns @customer else error if cur_user mismatch
+      # ----------------------------------------------------------------------
+      def get_customer()
+        if params[:id] != refinery_current_user.id 
+          error_404
+        else
+          @customer = Customer.find(params[:id])
+        end
       end
 
     end  #  class

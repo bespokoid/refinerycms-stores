@@ -1,0 +1,10 @@
+#customer-profile
+  - if refinery_current_user
+    = pretty_customer_name( refinery_current_user )
+    .customer-actions
+      = link_to( "profile", "#", :title => "update your profile information" )
+      = link_to( "sign out", "#", :title => "switch customer profile" )
+  -else
+    .customer-actions
+      = link_to( "sign up", refinery.new_customers_customer_path, :title => "create a new customer profile" )
+      = link_to( "sign in", new_refinery_user_session_path, :title => "sign into your customer profile" )

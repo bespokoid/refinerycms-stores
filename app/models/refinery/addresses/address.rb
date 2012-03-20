@@ -6,6 +6,9 @@ module Refinery
 
       validates :first_name, :presence => true
       validates :last_name,  :presence => true
+
+      belongs_to  :order, :class_name => ::Refinery::Orders::Order
+      belongs_to  :customer, :class_name => ::Refinery::Customers::Customer
               
     end
   end

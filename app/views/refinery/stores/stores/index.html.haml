@@ -1,0 +1,6 @@
+- content_for :body_content_left do
+  %ul#stores
+    - @stores.each do |store|
+      %li
+        = link_to store.name, refinery.stores_store_path(store)
+= render '/refinery/content_page'

@@ -14,7 +14,8 @@ module Refinery
       has_many  :addresses, :class_name => ::Refinery::Addresses::Address
       has_many  :line_items
 
-      # belongs_to :customer
+      belongs_to :customer, :class_name => ::Refinery::Customers::Customer, :foreign_key => :order_customer_id
+
       # belongs_to :shipping_type
       # belongs_to :discount
       # belongs_to :shipping_vendor

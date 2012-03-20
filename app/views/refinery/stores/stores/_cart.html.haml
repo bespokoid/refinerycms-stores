@@ -1,0 +1,18 @@
+#cart
+  .cart-title
+    %h3
+      = cart.store_name
+      Cart
+    - if cart.items.empty?
+      %p
+        %i Your cart is empty; click add-to-cart to add products.
+  %table
+    = render(:partial => "refinery/stores/stores/cart_item", :collection => cart.items)
+    %tr.total-line
+      %td{:colspan => "2"} Total
+      %td.total-cell= number_to_currency(cart.total_price)
+    %tr
+      %td
+        = button_to( "checkout",   refinery.checkout_stores_stores_path(),   :class => "checkout-cart" )
+      %td
+        = button_to( "empty cart", refinery.empty_cart_stores_stores_path(), :class => "empty-cart" )

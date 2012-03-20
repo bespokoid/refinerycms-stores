@@ -1,0 +1,38 @@
+- content_for :body_content_title do
+  = @product.name
+- content_for :body_content_left do
+  %section#product
+    .product_show
+      .product_photo
+        - if @product.main_pic_id
+          = image_fu @product.main_pic, Refinery::Images.user_image_sizes[:large], :class => "product-pic", :alt =>  @product.name
+        - else
+          \&nbsp;
+      .product_text
+        %h1
+          = @product.name
+        %p
+          = raw @product.description
+    .product_spec
+      .product_code
+        %p
+          code: #{@product.code}
+          %br/
+          size:
+          \#{number_with_precision(@product.size_width, :precision => 1)} x
+          \#{number_with_precision(@product.size_height, :precision => 1)} x
+          \#{number_with_precision(@product.size_depth, :precision => 1)}
+          %br/
+          weight:
+          \#{number_with_precision(@product.weight, :precision => 1)} lbs
+          - unless @product.digital_download_id.blank?
+            %i digital download
+      .product_pricebuy
+        %h2
+          = number_to_currency(@product.price)
+        .product-action
+          = button_to( "add to cart", refinery.add_to_cart_stores_stores_path(:id => @product), :class => "add-to-cart" )
+- content_for :body_content_right do
+  %aside
+    = render( :partial => "refinery/stores/stores/cart", :object => @cart )
+= render '/refinery/content_page'
