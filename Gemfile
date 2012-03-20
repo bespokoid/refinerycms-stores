@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gemspec
+# gemspec
 
 gem 'refinerycms', '>= 2.0.0'
 
@@ -12,8 +12,9 @@ group :development, :test do
 
 #   gem 'rb-inotify', '>= 0.5.1'
 #   gem 'libnotify',  '~> 0.1.3'
-  gem 'jeweler'
-  gem 'therubyracer'
+#   gem 'therubyracer'
+
+gem 'jeweler'
 
 end  # group do
 
