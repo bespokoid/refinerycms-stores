@@ -3,9 +3,8 @@ module Refinery
     class CustomersController < ApplicationController
 
       crudify :customer
-      
-      before_filter :redirect?, :except => [:new, :create]
-      before_filter :get_customer, :except => [:new, :create]
+
+      before_filter :authenticate_refinery_user!, :get_customer, :except => [:new, :create] 
 
       def new
         @customer = Customer.new

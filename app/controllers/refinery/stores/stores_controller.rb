@@ -2,6 +2,7 @@ module Refinery
   module Stores
     class StoresController < ::Refinery::StoresApplicationController
 
+      before_filter :authenticate_refinery_user!, :only => :checkout
       before_filter :find_first_store, :only => :index
       before_filter :find_store, :only => :show
       before_filter :find_page, :except => [:index, :add_to_cart, :empty_cart, :checkout]
