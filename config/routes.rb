@@ -4,6 +4,7 @@ Refinery::Core::Engine.routes.draw do
   # Frontend routes
 # ###################################################################
   namespace :stores do
+    root :to => 'stores#index'
     resources :stores, :only => [:index, :show]  do
       collection do
         post :add_to_cart
@@ -13,6 +14,11 @@ Refinery::Core::Engine.routes.draw do
     end
  
   end
+#   namespace :stores, :path => 'refinery' do
+#     root :to => 'stores#index'
+#   resources :dialogs, :only => :show
+#   end
+
 
   namespace :orders do
     resources :orders, :only => [:index, :show, :update, :edit] do
