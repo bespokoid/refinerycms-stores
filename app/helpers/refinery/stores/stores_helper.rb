@@ -11,7 +11,7 @@ module Refinery
          return "Hi #{name}!"
 
        rescue NameError
-         return  "please signin"
+         return  "please&hellip;".html_safe
        end
 
        def is_user_signed_in?()
