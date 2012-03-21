@@ -1,6 +1,6 @@
 module Refinery
   module Customers
-    class CustomersController < ApplicationController
+    class CustomersController < ::ApplicationController
 
       crudify :customer
 
