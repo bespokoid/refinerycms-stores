@@ -2,7 +2,7 @@ module Refinery
   module Customers
     class CustomersController < ::ApplicationController
 
-      crudify :customer
+      crudify ::Refinery::Customers::Customer
 
       before_filter :authenticate_refinery_user!, :get_customer, :except => [:new, :create] 
 
