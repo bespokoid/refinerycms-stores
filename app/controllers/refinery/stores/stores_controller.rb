@@ -2,6 +2,7 @@ module Refinery
   module Stores
     class StoresController < ::Refinery::StoresApplicationController
 
+      before_filter :set_after_sign_in_path
       before_filter :authenticate_refinery_user!, :only => :checkout
 
       before_filter :find_first_store, :only => :index
@@ -60,6 +61,10 @@ module Refinery
   def redirect_to_index(msg = nil)
     flash[:notice] = msg if msg
     redirect_to refinery.stores_store_path( find_first_store )
+  end
+
+  def set_after_sign_in_path
+    after_sign_in_path_for( 'refinery/stores/stores' )
   end
     
  
