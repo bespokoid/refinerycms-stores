@@ -1,7 +1,10 @@
 module Refinery
   module Products
     class ProductsController <  ::Refinery::StoresApplicationController
+
       before_filter :find_cart
+
+      helper  'refinery/stores/stores'
 
       def show
         @product = Product.find(params[:id])

@@ -4,9 +4,9 @@ module Refinery
       include Refinery::Engine
       isolate_namespace Refinery::Customers
 
-      engine_name :refinery_stores
+#     engine_name :refinery_stores
 
-      initializer "register refinerycms_customers plugin" do |app|
+#     initializer "register refinerycms_customers plugin" do |app|
 #         Refinery::Plugin.register do |plugin|
 #           plugin.name = "customers"
 #           plugin.url = {
@@ -21,7 +21,7 @@ module Refinery
 #           }
 #           
 #         end
-      end
+#     end
 
       config.after_initialize do
         Refinery.register_engine(Refinery::Customers)

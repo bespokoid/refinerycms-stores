@@ -11,6 +11,8 @@ module Refinery
       before_filter :find_order, :except => :index
       before_filter :setup_payment_gateway, :only => [:edit, :update, :purchase, :re_edit]
 
+      helper  'refinery/stores/stores'
+
       def index
         # you can use meta fields from your model instead (e.g. browser_title)
         # by swapping @page for @order in the line below:
