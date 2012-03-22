@@ -7,6 +7,7 @@ module Refinery
       # ensure state machine transitions
 
       before_filter :authenticate_refinery_user!
+
       before_filter :find_all_orders, :only => :index
       before_filter :find_order, :except => :index
       before_filter :setup_payment_gateway, :only => [:edit, :update, :purchase, :re_edit]

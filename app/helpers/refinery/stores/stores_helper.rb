@@ -3,15 +3,16 @@ module Refinery
      module StoresHelper
 
        def pretty_customer_name( )
-         user = refinery_current_user  # might raise exception
+         user = current_refinery_user  # might raise exception
+         return  "please&hellip;".html_safe if user.nil?
 
          name = ( user.billing_address.nil?  ?  
                  user.username  : 
                  user.billing_address.first_name )
          return "Hi #{name}!"
 
-       rescue NameError
-         return  "please&hellip;".html_safe
+        rescue NameError
+          return  "please&hellip;".html_safe
        end
 
        def is_user_signed_in?()

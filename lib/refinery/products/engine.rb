@@ -6,7 +6,7 @@ module Refinery
 
       engine_name :refinery_stores
 
-      initializer "register refinerycms_products plugin" do |app|
+#     initializer "register refinerycms_products plugin" do |app|
 #         Refinery::Plugin.register do |plugin|
 #           plugin.name = "products"
 #           plugin.url = {
@@ -21,7 +21,7 @@ module Refinery
 #           }
 #           
 #         end
-      end
+#     end
 
       config.after_initialize do
         Refinery.register_engine(Refinery::Products)
