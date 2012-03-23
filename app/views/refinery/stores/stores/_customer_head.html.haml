@@ -4,9 +4,9 @@
       = pretty_customer_name( )
       &ensp;
       - if refinery_user_signed_in?
-        = link_to( "profile", "#", :title => "update your profile information" )
+        = link_to( "profile", refinery.edit_customers_customer_path( current_refinery_user ), :title => "update your profile information" )
         &nbsp;
-        = link_to( "sign out", "#", :title => "switch customer profile" )
+        = link_to( "sign out", refinery.destroy_refinery_user_session_path, :title => "switch customer profile" )
       -else
         = link_to( "sign up", refinery.new_customers_customer_path, :title => "create a new customer profile" )
         &nbsp;

@@ -55,7 +55,7 @@ module Refinery
     protected
 
       def redirect?
-        if refinery_current_user.nil?
+        if current_refinery_user.nil?
           redirect_to new_refinery_user_session_path
         end
       end
@@ -64,10 +64,10 @@ module Refinery
       # get_customer -- returns @customer else error if cur_user mismatch
       # ----------------------------------------------------------------------
       def get_customer()
-        if params[:id] != refinery_current_user.id 
+        if params[:id] != current_refinery_user.username 
           error_404
         else
-          @customer = Customer.find(params[:id])
+          @customer = Customer.where(:username => params[:id]).first
         end
       end
 
