@@ -2,6 +2,7 @@ require 'refinerycms-core'
 
 module Refinery
   autoload :StoresGenerator, 'generators/refinery/stores_generator'
+    require 'refinery/stores/authenticated_system'
 
   module Stores
     require 'refinery/stores/engine'
