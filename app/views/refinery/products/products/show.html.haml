@@ -34,5 +34,5 @@
           = button_to( "add to cart", refinery.add_to_cart_stores_stores_path(:id => @product), :class => "add-to-cart" )
 - content_for :body_content_right do
   %aside
-    = render( :partial => "refinery/stores/stores/cart", :object => @cart )
+    = render( :partial => "refinery/shared/cart", :object => @cart )
 = render '/refinery/content_page'

@@ -9,7 +9,7 @@
       %p
         %i Your cart is empty; click add-to-cart to add products.
   %table
-    = render(:partial => "refinery/stores/stores/cart_item", :collection => cart.items)
+    = render(:partial => "refinery/shared/cart_item", :collection => cart.items)
     %tr.total-line
       %td{:colspan => "2"} Total
       %td.total-cell= number_to_currency(cart.total_price)

@@ -12,6 +12,16 @@ module Refinery
 
       # GET /customers/:id/edit
       def edit
+        @billing_address = 
+          ( @customer.billing_address.nil?  ?  
+            ::Refinery::Addresses::Address.new( :email => @customer.email ) : 
+            @customer.billing_address 
+          )
+        @shipping_address = 
+          ( @customer.shipping_address.nil?  ?  
+            ::Refinery::Addresses::Address.new( :email => @customer.email ) : 
+            @customer.shipping_address 
+          )
       end
 
       # PUT /customers/:id
