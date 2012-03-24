@@ -158,7 +158,8 @@ module Refinery
 # ---------------------------------------------------------------------------
   def handle_update( params )
      if checkout_started?
-       bill_address, ship_address = update_addresses( params )
+       bill_address, ship_address = 
+         ::Refinery::Addresses::Address.update_addresses( self, params )
        next_in_process!  if  bill_address.errors.empty? && ship_address.errors.empty?
      end
 
@@ -219,43 +220,6 @@ module Refinery
     return bill_address, ship_address
   end
 
-
-# ---------------------------------------------------------------------------
-  # update_addresses -- complex logic for dealing with 2 order addresses
-  # return bill_address, ship_address objects
-# ---------------------------------------------------------------------------
-   def update_addresses( params )
-     # if bill exists; update with parameters
-     # else create bill
-      if (bill_address  = self.billing_address)
-         bill_address.update_attributes( params[:billing_address] )
-      else
-         bill_address = self.addresses.create( 
-              params[:billing_address].merge( { :is_billing => true } ) 
-         )
-      end  # if..then..else billing address setup
-
-         # continue if error free
-      if bill_address.errors.empty?
-
-           # does customer wants same address for both ?
-         ship_params = ( params[:use_billing]  ?  
-                        params[:billing_address]  :  
-                        params[:shipping_address] 
-         ).merge( { :is_billing => false } )
-
-         if (ship_address  = self.shipping_address)
-            ship_address.update_attributes( ship_params )
-         else
-            ship_address = self.addresses.create( ship_params )
-         end  # if..then..else shiping address setup
-
-      else #  need placeholder for re-editing the order
-        ship_address = self.addresses.build( params[:shipping_address] )
-      end  # if no bill address errors
-
-      return bill_address, ship_address
-   end
 
 # ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------

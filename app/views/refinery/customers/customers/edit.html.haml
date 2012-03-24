@@ -14,18 +14,16 @@
         :url => refinery.customers_customer_path, |
         :html => { :method => :put } do |f|           |
         = render '/refinery/admin/error_messages', :object => @customer, :include_object_name => true
-        .field
+        
+        %h3 Change Password
+        %i leave blank if unchanged
+
+        .form-lines.no-width
           = f.label :password
           = f.password_field :password, :class => 'larger widest'
-        .field
+          %br
           = f.label :password_confirmation
           = f.password_field :password_confirmation, :class => 'larger widest'
-        = render '/refinery/admin/form_actions', :f => f,                               |
-          :continue_editing => false,                                                   |
-          :submit_button_text => t('reset_password', :scope => 'refinery.users.reset'), |
-          :cancel_url => refinery.stores_root_path,                       |
-          :cancel_title => nil,                                                         |
-          :hide_delete => true                                                          |
 
         %h3 Your Billing Information
         = render( :partial => "refinery/shared/address_form", :object => @billing_address,  :locals => { :as_name => :billing_address } )
@@ -37,4 +35,14 @@
         %br
         = render( :partial => "refinery/shared/address_form", :object => @shipping_address, :locals => { :as_name => :shipping_address } )
 
+        = render '/refinery/admin/form_actions', :f => f,                               |
+          :continue_editing => false,                                                   |
+          :submit_button_text => "update profile", |
+          :cancel_url => refinery.stores_root_path,                       |
+          :cancel_title => nil,                                                         |
+          :hide_delete => true                                                          |
+
+
+
+= render "/refinery/content_page"
 

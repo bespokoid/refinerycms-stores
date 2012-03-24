@@ -27,6 +27,9 @@ module Refinery
       # PUT /customers/:id
       def update
 
+        @billing_address, @shipping_address = 
+            ::Refinery::Addresses::Address.update_addresses( @customer,  params )
+
         if params[:customer][:password].blank? and params[:customer][:password_confirmation].blank?
           params[:customer].delete(:password)
           params[:customer].delete(:password_confirmation)
@@ -35,9 +38,12 @@ module Refinery
         # keep these the same
         params[:customer][:username] = params[:customer][:email]
 
-        if @customer.update_attributes(params[:customer])
+        if @customer.update_attributes(params[:customer]) && 
+              @billing_address.errors.empty? &&  
+              @shipping_address.errors.empty?
+
           flash[:notice] = t('successful', :scope => 'customers.update', :email => @customer.email)
-          redirect_to root_path 
+          redirect_to refinery.stores_root_path 
 
         else
           render :action => 'edit'
@@ -52,7 +58,7 @@ module Refinery
         if @customer.save
           @customer.roles << ::Refinery::Role[:customer]  # remember as a customer role
           
-          redirect_to root_path 
+          redirect_to refinery.stores_root_path 
 
         else
           @customer.errors.delete(:username) # this is set to email
