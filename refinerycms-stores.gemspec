@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "refinerycms-stores"
-  s.version = "0.0.19"
+  s.version = "0.0.20"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daudi Amani"]
-  s.date = "2012-03-23"
+  s.date = "2012-03-26"
   s.description = "Complete engine for Stripe gateway-based shopping cart to be used with a RefineryCMS project"
   s.email = "dsaronin@gmail.com"
   s.extra_rdoc_files = [
@@ -59,7 +59,6 @@ Gem::Specification.new do |s|
     "app/views/refinery/orders/admin/orders/edit.html.erb",
     "app/views/refinery/orders/admin/orders/index.html.erb",
     "app/views/refinery/orders/admin/orders/new.html.erb",
-    "app/views/refinery/orders/orders/_address_form.html.haml",
     "app/views/refinery/orders/orders/_card_form.html.haml",
     "app/views/refinery/orders/orders/_order_snapshot.html.haml",
     "app/views/refinery/orders/orders/confirmation.html.haml",
@@ -77,6 +76,10 @@ Gem::Specification.new do |s|
     "app/views/refinery/products/admin/products/index.html.erb",
     "app/views/refinery/products/admin/products/new.html.erb",
     "app/views/refinery/products/products/show.html.haml",
+    "app/views/refinery/shared/_address_form.html.haml",
+    "app/views/refinery/shared/_cart.html.haml",
+    "app/views/refinery/shared/_cart_item.html.haml",
+    "app/views/refinery/shared/_customer_head.html.haml",
     "app/views/refinery/stores/admin/stores/_actions.html.erb",
     "app/views/refinery/stores/admin/stores/_form.html.erb",
     "app/views/refinery/stores/admin/stores/_records.html.erb",
@@ -86,9 +89,6 @@ Gem::Specification.new do |s|
     "app/views/refinery/stores/admin/stores/edit.html.erb",
     "app/views/refinery/stores/admin/stores/index.html.erb",
     "app/views/refinery/stores/admin/stores/new.html.erb",
-    "app/views/refinery/stores/stores/_cart.html.haml",
-    "app/views/refinery/stores/stores/_cart_item.html.haml",
-    "app/views/refinery/stores/stores/_customer_head.html.haml",
     "app/views/refinery/stores/stores/_list_product.html.haml",
     "app/views/refinery/stores/stores/index.html.haml",
     "app/views/refinery/stores/stores/show.html.haml",
