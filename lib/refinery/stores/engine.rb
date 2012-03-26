@@ -42,6 +42,10 @@ module Refinery
          :foreign_key => :customer_id,
          :conditions => { :is_billing => false, :order_id => nil }
 
+      def idize_username
+        self.username.gsub(/[@.]/,"-")
+      end
+ 
 
         end  # extend user for customers
       end  # to prepare

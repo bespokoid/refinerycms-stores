@@ -11,6 +11,9 @@ module Refinery
       has_one   :shipping_address, :class_name => ::Refinery::Addresses::Address,
          :conditions => { :is_billing => false, :order_id => nil }
 
+      def idize_username
+        self.username.gsub(/[@.]/,"-")
+      end
               
     end
   end

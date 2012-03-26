@@ -60,7 +60,7 @@ module Refinery
 
         if @customer.save
           @customer.roles << ::Refinery::Role[:customer]  # remember as a customer role
-          
+          sign_in( @customer)   # forces devise to login this user
           redirect_to refinery.stores_root_path 
 
         else
@@ -83,10 +83,11 @@ module Refinery
       # get_customer -- returns @customer else error if cur_user mismatch
       # ----------------------------------------------------------------------
       def get_customer()
-        if params[:id] != current_refinery_user.username 
+        if params[:id] != current_refinery_user.idize_username 
           error_404
         else
           @customer = Customer.where(:username => params[:id]).first
+          raise ArgumentError if @customer.nil?
         end
       end
 
