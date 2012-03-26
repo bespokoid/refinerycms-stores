@@ -2,7 +2,7 @@ module Refinery
   module Customers
     class CustomersController < ::ApplicationController
 
-      crudify ::Refinery::Customers::Customer
+      # crudify ::Refinery::Customers::Customer
 
       before_filter :authenticate_refinery_user!, :get_customer, :except => [:new, :create] 
   
@@ -33,15 +33,15 @@ module Refinery
         @billing_address, @shipping_address = 
             ::Refinery::Addresses::Address.update_addresses( @customer,  params )
 
-        if params[:customers_customer][:password].blank? and params[:customers_customer][:password_confirmation].blank?
-          params[:customers_customer].delete(:password)
-          params[:customers_customer].delete(:password_confirmation)
+        if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
+          params[:user].delete(:password)
+          params[:user].delete(:password_confirmation)
         end
 
         # keep these the same
-        params[:customers_customer][:username] = @customer.email
+        params[:user][:username] = @customer.email
 
-        if @customer.update_attributes(params[:customers_customer]) && 
+        if @customer.update_attributes(params[:user]) && 
               @billing_address.errors.empty? &&  
               @shipping_address.errors.empty?
 
@@ -83,12 +83,8 @@ module Refinery
       # get_customer -- returns @customer else error if cur_user mismatch
       # ----------------------------------------------------------------------
       def get_customer()
-        if params[:id] != current_refinery_user.idize_username 
-          error_404
-        else
-          @customer = Customer.where(:username => params[:id]).first
-          raise ArgumentError if @customer.nil?
-        end
+        @customer = current_refinery_user
+        error_404 unless params[:id] == @customer.to_param
       end
 
     end  #  class
