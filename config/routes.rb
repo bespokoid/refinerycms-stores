@@ -14,10 +14,6 @@ Refinery::Core::Engine.routes.draw do
     end
  
   end
-#   namespace :stores, :path => 'refinery' do
-#     root :to => 'stores#index'
-#   resources :dialogs, :only => :show
-#   end
 
 
   namespace :orders do

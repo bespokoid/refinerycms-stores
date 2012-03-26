@@ -5,6 +5,9 @@ module Refinery
       crudify ::Refinery::Customers::Customer
 
       before_filter :authenticate_refinery_user!, :get_customer, :except => [:new, :create] 
+  
+      layout 'refinery/layouts/login', :only => :new
+
 
       def new
         @customer = Customer.new
