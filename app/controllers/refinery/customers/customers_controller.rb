@@ -30,15 +30,15 @@ module Refinery
         @billing_address, @shipping_address = 
             ::Refinery::Addresses::Address.update_addresses( @customer,  params )
 
-        if params[:customer][:password].blank? and params[:customer][:password_confirmation].blank?
-          params[:customer].delete(:password)
-          params[:customer].delete(:password_confirmation)
+        if params[:customers_customer][:password].blank? and params[:customers_customer][:password_confirmation].blank?
+          params[:customers_customer].delete(:password)
+          params[:customers_customer].delete(:password_confirmation)
         end
 
         # keep these the same
-        params[:customer][:username] = params[:customer][:email]
+        params[:customers_customer][:username] = @customer.username
 
-        if @customer.update_attributes(params[:customer]) && 
+        if @customer.update_attributes(params[:customers_customer]) && 
               @billing_address.errors.empty? &&  
               @shipping_address.errors.empty?
 
@@ -52,11 +52,11 @@ module Refinery
       end
 
       def create
-        @customer = Customer.new(params[:customer])
+        @customer = Customer.new(params[:customers_customer])
         @customer.username = @customer.email
 
         if @customer.save
-          @customer.roles << ::Refinery::Role[:customer]  # remember as a customer role
+          @customer.roles << ::Refinery::Role[:customers_customer]  # remember as a customer role
           
           redirect_to refinery.stores_root_path 
 

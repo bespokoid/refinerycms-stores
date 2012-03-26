@@ -15,13 +15,21 @@
         :html => { :method => :put } do |f|           |
         = render '/refinery/admin/error_messages', :object => @customer, :include_object_name => true
         
+        %h3 Sign-in Information
+        %i username and email must be unique
+
+        .form-lines.no-width
+          = f.label :username
+          = f.text_field :username
+          = f.label :email
+          = f.text_field :email
+
         %h3 Change Password
         %i leave blank if unchanged
 
         .form-lines.no-width
           = f.label :password
           = f.password_field :password, :class => 'larger widest'
-          %br
           = f.label :password_confirmation
           = f.password_field :password_confirmation, :class => 'larger widest'
 

@@ -197,12 +197,19 @@ module Refinery
 # TODO: convert customer's billing/shipping addresses to order addresses
 
 # ---------------------------------------------------------------------------
+# get_billship_addresses -- returns a billing and a shipping address
+  # args: customer obj
+  # tries to addresses first from order itself, then customer, else new
 # ---------------------------------------------------------------------------
-  def get_billship_addresses()
-    bill_address  = self.billing_address  || ::Refinery::Addresses::Address.new( :is_billing => true  )
+  def get_billship_addresses( customer )
+
+    bill_address  = self.billing_address  || 
+                    customer.billing_address || 
+                    ::Refinery::Addresses::Address.new( :is_billing => true  )
 
       # ship needs to be populated from bill if no ship already present
     ship_address  = self.shipping_address || 
+                    customer.shipping_address || 
                     ::Refinery::Addresses::Address.new( 
                       :first_name  =>     bill_address.first_name ,  
                       :last_name   =>     bill_address.last_name  ,  

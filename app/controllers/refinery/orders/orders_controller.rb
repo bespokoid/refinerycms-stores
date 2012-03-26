@@ -89,9 +89,7 @@ module Refinery
       end
 
       def prep_edit_view
-        if @billing_address.nil?
-          @billing_address, @shipping_address = @order.get_billship_addresses
-        end
+        @billing_address, @shipping_address = @order.get_billship_addresses( current_refinery_user )
       end
 
     end   #  class OrdersController
