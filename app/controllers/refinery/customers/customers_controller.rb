@@ -36,7 +36,7 @@ module Refinery
         end
 
         # keep these the same
-        params[:customers_customer][:username] = @customer.username
+        params[:customers_customer][:username] = @customer.email
 
         if @customer.update_attributes(params[:customers_customer]) && 
               @billing_address.errors.empty? &&  
@@ -56,7 +56,7 @@ module Refinery
         @customer.username = @customer.email
 
         if @customer.save
-          @customer.roles << ::Refinery::Role[:customers_customer]  # remember as a customer role
+          @customer.roles << ::Refinery::Role[:customer]  # remember as a customer role
           
           redirect_to refinery.stores_root_path 
 

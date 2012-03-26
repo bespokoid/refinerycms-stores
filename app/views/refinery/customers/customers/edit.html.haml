@@ -16,11 +16,9 @@
         = render '/refinery/admin/error_messages', :object => @customer, :include_object_name => true
         
         %h3 Sign-in Information
-        %i username and email must be unique
+        %i your sign-in email must be unique
 
         .form-lines.no-width
-          = f.label :username
-          = f.text_field :username
           = f.label :email
           = f.text_field :email
 
