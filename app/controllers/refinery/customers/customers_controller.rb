@@ -33,15 +33,17 @@ module Refinery
         @billing_address, @shipping_address = 
             ::Refinery::Addresses::Address.update_addresses( @customer,  params )
 
-        if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
-          params[:user].delete(:password)
-          params[:user].delete(:password_confirmation)
+        fields = ( params[:user].nil?  ?  :customers_customer  :  :user )
+
+        if params[fields][:password].blank? and params[fields][:password_confirmation].blank?
+          params[fields].delete(:password)
+          params[fields].delete(:password_confirmation)
         end
 
         # keep these the same
-        params[:user][:username] = @customer.email
+        params[fields][:username] = @customer.email
 
-        if @customer.update_attributes(params[:user]) && 
+        if @customer.update_attributes(params[fields]) && 
               @billing_address.errors.empty? &&  
               @shipping_address.errors.empty?
 
