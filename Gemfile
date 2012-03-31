@@ -24,4 +24,5 @@ gem 'hpricot'
 gem 'ruby_parser'
 gem 'haml-rails'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'paperclip'
 
