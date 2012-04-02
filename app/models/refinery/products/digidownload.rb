@@ -3,6 +3,8 @@
 #       t.integer   :download_completed, :default => 0
 #       t.integer   :download_remaining, :default => 0
 #       t.integer   :download_count,     :default => 0
+#       t.integer   :restrict_count
+#       t.datetime  :restrict_date
 #       t.boolean   :is_defunct,         :default => false
 #       t.string    :doc_file_name
 #       t.string    :doc_content_type
@@ -38,7 +40,9 @@ module Refinery
   
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
-  
+#  need accessor functions which look at restrict_count and/or restrict_date
+#  to determine if it's okay to download
+#  also to verify the token
 # ------------------------------------------------------------------------------
 # icon_hash= -- resets the icon hash to another set of image files
 # ------------------------------------------------------------------------------
