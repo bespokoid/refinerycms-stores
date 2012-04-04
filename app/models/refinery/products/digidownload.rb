@@ -4,7 +4,7 @@
 #       t.integer   :download_remaining, :default => 0
 #       t.integer   :download_count,     :default => 0
 #       t.integer   :restrict_count
-#       t.datetime  :restrict_date
+#       t.integer   :restrict_days
 #       t.boolean   :is_defunct,         :default => false
 #       t.string    :doc_file_name
 #       t.string    :doc_content_type
