@@ -62,8 +62,9 @@ Refinery::Core::Engine.routes.draw do
           post :update_positions
         end
 
-      resources :digidownloads, :except => [:show] do
+      resources :digidownloads do
         collection do
+          post :update_positions
         end
       end
 

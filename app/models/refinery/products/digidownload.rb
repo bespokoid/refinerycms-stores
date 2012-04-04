@@ -1,4 +1,5 @@
 # *******************************************************************
+#       t.references :product, :null => false
 #       t.string    :download_token, :unique => true, :null => false
 #       t.integer   :download_completed, :default => 0
 #       t.integer   :download_remaining, :default => 0

@@ -11,6 +11,14 @@ module Refinery
       has_many   :line_items, :class_name => '::Refinery::Orders::LineItem'
  
       scope :active, lambda { |i| where(["date_available <= ? ", Time.now ]) }
+              
+# -----------------------------------------------------------------------
+# select_list -- returns an html select list suitable for selecting a store
+# -----------------------------------------------------------------------
+   def self.select_list()
+      all.map{ |x| [x.name, x.id] }
+   end
+
   
     end
   end
