@@ -11,15 +11,8 @@ class CreateProductsDigidownloads < ActiveRecord::Migration
       t.integer   :restrict_days
       t.boolean   :is_defunct,         :default => false
 
-      t.string    :doc_file_name
-      t.string    :doc_content_type
-      t.integer   :doc_file_size
-      t.datetime  :doc_updated_at
-
-      t.string    :preview_file_name
-      t.string    :preview_content_type
-      t.integer   :preview_file_size
-      t.datetime  :preview_updated_at
+      t.has_attached_file :doc
+      t.has_attached_file :preview
 
       t.integer :position
 
