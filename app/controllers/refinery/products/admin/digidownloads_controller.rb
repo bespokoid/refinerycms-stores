@@ -31,4 +31,7 @@ module Refinery
 # #########################################################################
 
 
-end   # class DigidownloadsController
+      end   # class DigidownloadsController
+    end  # mod admin
+  end  # mod products
+end   # mod refinery

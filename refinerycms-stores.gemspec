@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daudi Amani"]
-  s.date = "2012-03-26"
+  s.date = "2012-04-05"
   s.description = "Complete engine for Stripe gateway-based shopping cart to be used with a RefineryCMS project"
   s.email = "dsaronin@gmail.com"
   s.extra_rdoc_files = [
@@ -21,11 +21,24 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "Rakefile",
     "VERSION",
+    "app/assets/images/Excel.png",
+    "app/assets/images/PowerPoint.png",
+    "app/assets/images/Word.png",
+    "app/assets/images/audio-icon.png",
+    "app/assets/images/camera-icon.png",
+    "app/assets/images/html-icon.png",
+    "app/assets/images/muku-doc-font-128.png",
+    "app/assets/images/pdf-icon.png",
+    "app/assets/images/print-icon.png",
+    "app/assets/images/video-icon.png",
+    "app/assets/images/warning-icon.png",
+    "app/assets/images/zip_thumb.png",
     "app/assets/stylesheets/refinery/refinerycms-stores.sass",
     "app/controllers/refinery/addresses/admin/addresses_controller.rb",
     "app/controllers/refinery/customers/customers_controller.rb",
     "app/controllers/refinery/orders/admin/orders_controller.rb",
     "app/controllers/refinery/orders/orders_controller.rb",
+    "app/controllers/refinery/products/admin/digidownloads_controller.rb",
     "app/controllers/refinery/products/admin/products_controller.rb",
     "app/controllers/refinery/products/products_controller.rb",
     "app/controllers/refinery/stores/admin/stores_controller.rb",
@@ -37,6 +50,7 @@ Gem::Specification.new do |s|
     "app/models/refinery/customers/customer.rb",
     "app/models/refinery/orders/line_item.rb",
     "app/models/refinery/orders/order.rb",
+    "app/models/refinery/products/digidownload.rb",
     "app/models/refinery/products/product.rb",
     "app/models/refinery/stores/store.rb",
     "app/views/refinery/addresses/admin/addresses/_actions.html.erb",
@@ -66,6 +80,10 @@ Gem::Specification.new do |s|
     "app/views/refinery/orders/orders/index.html.haml",
     "app/views/refinery/orders/orders/purchase.html.haml",
     "app/views/refinery/orders/orders/show.html.haml",
+    "app/views/refinery/products/admin/digidownloads/_form.html.haml",
+    "app/views/refinery/products/admin/digidownloads/edit.html.haml",
+    "app/views/refinery/products/admin/digidownloads/index.html.haml",
+    "app/views/refinery/products/admin/digidownloads/new.html.haml",
     "app/views/refinery/products/admin/products/_actions.html.erb",
     "app/views/refinery/products/admin/products/_form.html.erb",
     "app/views/refinery/products/admin/products/_product.html.erb",
@@ -80,7 +98,7 @@ Gem::Specification.new do |s|
     "app/views/refinery/shared/_cart.html.haml",
     "app/views/refinery/shared/_cart_item.html.haml",
     "app/views/refinery/shared/_customer_head.html.haml",
-    "app/views/refinery/stores/admin/stores/_actions.html.erb",
+    "app/views/refinery/stores/admin/stores/_actions.html.haml",
     "app/views/refinery/stores/admin/stores/_form.html.erb",
     "app/views/refinery/stores/admin/stores/_records.html.erb",
     "app/views/refinery/stores/admin/stores/_sortable_list.html.erb",
@@ -104,6 +122,7 @@ Gem::Specification.new do |s|
     "db/migrate/4_create_orders_line_items.rb",
     "db/migrate/5_create_addresses_addresses.rb",
     "db/migrate/6_create_customers_customers.rb",
+    "db/migrate/7_create_products_digidownloads.rb",
     "db/seeds.rb",
     "lib/generators/refinery/stores_generator.rb",
     "lib/refinery/addresses.rb",
@@ -159,6 +178,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<ruby_parser>, [">= 0"])
       s.add_runtime_dependency(%q<haml-rails>, [">= 0"])
       s.add_runtime_dependency(%q<stripe>, [">= 0"])
+      s.add_runtime_dependency(%q<paperclip>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
     else
       s.add_dependency(%q<refinerycms>, [">= 2.0.0"])
@@ -168,6 +188,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<ruby_parser>, [">= 0"])
       s.add_dependency(%q<haml-rails>, [">= 0"])
       s.add_dependency(%q<stripe>, [">= 0"])
+      s.add_dependency(%q<paperclip>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
     end
   else
@@ -178,6 +199,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<ruby_parser>, [">= 0"])
     s.add_dependency(%q<haml-rails>, [">= 0"])
     s.add_dependency(%q<stripe>, [">= 0"])
+    s.add_dependency(%q<paperclip>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
   end
 end

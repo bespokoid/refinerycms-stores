@@ -57,10 +57,12 @@ Refinery::Core::Engine.routes.draw do
 
   namespace :products, :path => '' do
     namespace :admin, :path => 'refinery' do
+
       resources :products, :except => :show do
         collection do
           post :update_positions
         end
+      end
 
       resources :digidownloads do
         collection do
@@ -68,9 +70,8 @@ Refinery::Core::Engine.routes.draw do
         end
       end
 
-      end
-    end
-  end
+    end   # admin
+  end   #  products
 
   namespace :orders, :path => '' do
     namespace :admin, :path => 'refinery' do
