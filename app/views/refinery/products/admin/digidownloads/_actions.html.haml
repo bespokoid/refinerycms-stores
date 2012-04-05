@@ -1,0 +1,19 @@
+%ul
+  - if ::Refinery::Products::Admin::DigidownloadsController.searchable?
+    %li
+      = render '/refinery/admin/search', :url => refinery.digidownloads_admin_digidownloads_path
+  %li
+    = link_to t('.create_new'), refinery.new_digidownloads_admin_digidownload_path, |
+      :class => "add_icon"                                                |
+  - if !searching? && ::Refinery::Products::Admin::DigidownloadsController.sortable? && ::Refinery::Products::Digidownload.any?
+    %li
+      = link_to t('.reorder', :what => "Digidownloads"), |
+        refinery.digidownloads_admin_digidownloads_path,      |
+        :id => "reorder_action",                    |
+        :class => "reorder_icon"                    |
+      -#
+      = link_to t('.reorder_done', :what => "Digidownloads"), |
+        refinery.digidownloads_admin_digidownloads_path,           |
+        :id => "reorder_action_done",                    |
+        :style => "display: none;",                      |
+        :class => "reorder_icon"                         |
