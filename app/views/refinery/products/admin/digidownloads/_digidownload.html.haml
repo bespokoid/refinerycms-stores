@@ -1,0 +1,16 @@
+%li{:class => "clearfix record #{cycle("on", "on-hover")}", :id => dom_id(digidownload)}
+  %span.title
+    = digidownload.doc_file_name
+  %span.actions
+    = link_to refinery_icon_tag("application_go.png"), refinery.digidownloads_digidownload_path(digidownload), |
+      :title => t('.view_live_html'),                                                           |
+      :target => "_blank"                                                                       |
+    -#
+    = link_to refinery_icon_tag("application_edit.png"), refinery.edit_digidownloads_admin_digidownload_path(digidownload), |
+      :title => t('.edit')                                                                                   |
+    -#
+    = link_to refinery_icon_tag("delete.png"), refinery.digidownloads_admin_digidownload_path(digidownload), |
+      :class => "cancel confirm-delete",                                                      |
+      :title => t('.delete'),                                                                 |
+      :confirm => t('message', :scope => 'refinery.admin.delete', :title => digidownload.name),    |
+      :method => :delete                                                                      |
