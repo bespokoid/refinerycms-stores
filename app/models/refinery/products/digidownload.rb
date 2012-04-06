@@ -35,6 +35,7 @@ module Refinery
 
 
       belongs_to :product, :class_name => '::Refinery::Products::Product'
+
 # #########################################################################
   
   @@icon_hash = nil

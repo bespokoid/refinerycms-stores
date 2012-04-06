@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daudi Amani"]
-  s.date = "2012-04-05"
+  s.date = "2012-04-06"
   s.description = "Complete engine for Stripe gateway-based shopping cart to be used with a RefineryCMS project"
   s.email = "dsaronin@gmail.com"
   s.extra_rdoc_files = [
@@ -80,7 +80,12 @@ Gem::Specification.new do |s|
     "app/views/refinery/orders/orders/index.html.haml",
     "app/views/refinery/orders/orders/purchase.html.haml",
     "app/views/refinery/orders/orders/show.html.haml",
+    "app/views/refinery/products/admin/digidownloads/_actions.html.haml",
+    "app/views/refinery/products/admin/digidownloads/_digidownload.html.haml",
+    "app/views/refinery/products/admin/digidownloads/_digidownloads.html.haml",
     "app/views/refinery/products/admin/digidownloads/_form.html.haml",
+    "app/views/refinery/products/admin/digidownloads/_records.html.haml",
+    "app/views/refinery/products/admin/digidownloads/_sortable_list.html.haml",
     "app/views/refinery/products/admin/digidownloads/edit.html.haml",
     "app/views/refinery/products/admin/digidownloads/index.html.haml",
     "app/views/refinery/products/admin/digidownloads/new.html.haml",
@@ -179,6 +184,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<haml-rails>, [">= 0"])
       s.add_runtime_dependency(%q<stripe>, [">= 0"])
       s.add_runtime_dependency(%q<paperclip>, [">= 0"])
+      s.add_runtime_dependency(%q<aws-s3>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
     else
       s.add_dependency(%q<refinerycms>, [">= 2.0.0"])
@@ -189,6 +195,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<haml-rails>, [">= 0"])
       s.add_dependency(%q<stripe>, [">= 0"])
       s.add_dependency(%q<paperclip>, [">= 0"])
+      s.add_dependency(%q<aws-s3>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
     end
   else
@@ -200,6 +207,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<haml-rails>, [">= 0"])
     s.add_dependency(%q<stripe>, [">= 0"])
     s.add_dependency(%q<paperclip>, [">= 0"])
+    s.add_dependency(%q<aws-s3>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
   end
 end

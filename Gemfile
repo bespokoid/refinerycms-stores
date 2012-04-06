@@ -25,4 +25,5 @@ gem 'ruby_parser'
 gem 'haml-rails'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-s3', :require => 'aws/s3'
 

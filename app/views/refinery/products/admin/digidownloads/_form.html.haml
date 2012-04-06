@@ -1,30 +1,27 @@
 = form_for [refinery, :products_admin, @digidownload], :html => { :multipart => true } do |f|
   = render '/refinery/admin/error_messages', :object => @digidownload, :include_object_name => true
 
-  belongs to product:
-  = @digidownload.product.name unless @digidownload.product.nil?
+  = f.label( "This download belongs to product" )
+  = f.select( :product_id, ::Refinery::Products::Product.digi_select_list )
 
   - unless @digidownload.doc_file_name.blank?
     = f.label( :doc, "current download", {:title => "current download filename"} )
     %i= @digidownload.doc_file_name
 
-  = f.label( :doc, 'upload new digital download', {:title => "digital download to be added or changed"} ) 
+  = f.label( :doc, 'Upload new digital download', {:title => "digital download to be added or changed"} ) 
   = f.file_field( :doc )
  
   .field
-    = f.label :restrict_count, {:title => "should there be a restriction on number of downloads for a given customer?should there be a restricted period in days after purchase for allowing downloads? leave blank if no restriction." }
+    = f.label "Restrict number of downloads per customer", {:title => "should there be a restriction on number of downloads for a given customer?should there be a restricted period in days after purchase for allowing downloads? leave blank if no restriction." }
     = f.text_field :restrict_count
   .field
-    = f.label :restrict_days, {:title => "should there be a restricted period in days after purchase for allowing downloads? leave blank if no restriction" }
+    = f.label "Restrict number of days for downloading after purchase", {:title => "should there be a restricted period in days after purchase for allowing downloads? leave blank if no restriction" }
     = f.text_field :restrict_days
-  .field
-    = f.label :date_available
-    = f.datetime_select :date_available
 
   = render '/refinery/admin/form_actions', :f => f,                                                  |
     :continue_editing => false,                                                                      |
-    :delete_title => t('delete', :scope => 'refinery.products.admin.products.product'),              |
-    :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @digidownload.name) |
+    :delete_title => t('delete', :scope => 'refinery.products.admin.digidownloads.digidownload'),              |
+    :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @digidownload.doc_file_name) |
 
 - content_for :javascripts do
   :javascript
