@@ -1,12 +1,17 @@
 = form_for [refinery, :products_admin, @digidownload], :html => { :multipart => true } do |f|
   = render '/refinery/admin/error_messages', :object => @digidownload, :include_object_name => true
 
-  = f.label( "This download belongs to product" )
-  = f.select( :product_id, ::Refinery::Products::Product.digi_select_list )
-
   - unless @digidownload.doc_file_name.blank?
-    = f.label( :doc, "current download", {:title => "current download filename"} )
-    %i= @digidownload.doc_file_name
+    .download-documents.clearfix
+      %dl
+        %dt
+          = image_tag( ::Refinery::Products::Digidownload.category_to_icon( @digidownload.to_category ), { :alt => @digidownload.doc_file_name, :class => 'icon_image' } )
+
+        %dd
+          %i= @digidownload.doc_file_name
+
+  = f.label( "This download belongs to product:" )
+  = f.select( :product_id, @digidownload.digi_select_list )
 
   = f.label( :doc, 'Upload new digital download', {:title => "digital download to be added or changed"} ) 
   = f.file_field( :doc )
