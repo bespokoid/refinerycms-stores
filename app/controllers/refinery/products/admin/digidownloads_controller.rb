@@ -10,7 +10,9 @@ module Refinery
       class DigidownloadsController < ::Refinery::AdminController
 
 # #########################################################################
-         crudify :'refinery/products/digidownload'
+         crudify :'refinery/products/digidownload',
+                :title_attribute => 'doc_file_name', :xhr_paging => true
+
 
 # #########################################################################
 
