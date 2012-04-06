@@ -5,7 +5,7 @@
     .download-documents.clearfix
       %dl
         %dt
-          = image_tag( ::Refinery::Products::Digidownload.category_to_icon( @digidownload.to_category ), { :alt => @digidownload.doc_file_name, :class => 'icon_image' } )
+          = link_to( raw( image_tag( ::Refinery::Products::Digidownload.category_to_icon( @digidownload.to_category ), { :alt => @digidownload.doc_file_name, :class => 'icon_image' } ) ), @digidownload.doc.url, {:title => @digidownload.doc_file_name, :target => 'popup', :onclick => "return popup(this.href,this.title)"} )
 
         %dd
           %i= @digidownload.doc_file_name
