@@ -184,7 +184,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<haml-rails>, [">= 0"])
       s.add_runtime_dependency(%q<stripe>, [">= 0"])
       s.add_runtime_dependency(%q<paperclip>, [">= 0"])
-      s.add_runtime_dependency(%q<aws-s3>, [">= 0"])
+      s.add_runtime_dependency(%q<aws-sdk>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
     else
       s.add_dependency(%q<refinerycms>, [">= 2.0.0"])
@@ -195,7 +195,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<haml-rails>, [">= 0"])
       s.add_dependency(%q<stripe>, [">= 0"])
       s.add_dependency(%q<paperclip>, [">= 0"])
-      s.add_dependency(%q<aws-s3>, [">= 0"])
+      s.add_dependency(%q<aws-sdk>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
     end
   else
@@ -207,7 +207,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<haml-rails>, [">= 0"])
     s.add_dependency(%q<stripe>, [">= 0"])
     s.add_dependency(%q<paperclip>, [">= 0"])
-    s.add_dependency(%q<aws-s3>, [">= 0"])
+    s.add_dependency(%q<aws-sdk>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
   end
 end
