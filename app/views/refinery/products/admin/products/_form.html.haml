@@ -1,0 +1,88 @@
+= form_for [refinery, :products_admin, @product] do |f|
+  = render '/refinery/admin/error_messages', |
+    :object => @product,                     |
+    :include_object_name => true             |
+
+  %table.product-header{:width => "100%"}
+    %tr
+      %td{:style => "vertical-align: top;"}
+        .field
+          = f.label 'choose a store'
+          = f.select :store_id, ::Refinery::Stores::Store.select_list
+        .field
+          = f.label :name
+          = f.text_field :name, :size => 80
+        .field
+          = f.label :date_available
+          = f.datetime_select :date_available
+        .field
+          = f.label :inactive
+          = f.check_box :inactive
+        - unless @product.digidownload.nil?
+          .download-documents.clearfix
+            %dl
+              %dt
+                = link_to( raw( image_tag( ::Refinery::Products::Digidownload.category_to_icon( @product.digidownload.to_category ), { :alt => @product.digidownload.doc_file_name, :class => 'icon_image' } ) ), @product.digidownload.doc.url, {:title => @product.digidownload.doc_file_name, :target => 'popup', :onclick => "return popup(this.href,this.title)"} )
+
+              %dd
+                %i= @product.digidownload.doc_file_name
+                = link_to( "change", refinery.products_admin_digidownload_path( @product.digidownload ), { :title => "click save first before changing the download here!" } )
+
+
+      %td.mainpic
+        .field
+          = f.label :main_pic
+          = render :partial => "/refinery/admin/image_picker", :locals => { |
+              :f => f,                                                      |
+              :field => :main_pic_id,                                       |
+              :image => @product.main_pic,                                  |
+              :toggle_image_display => false                                |
+            }                                                               |
+  .clearfix
+    .field.float-field
+      = f.label :code
+      = f.text_field :code
+    .field.float-field
+      = f.label :price
+      = f.text_field :price
+    .field.float-field
+      = f.label :quantity
+      = f.text_field :quantity
+    .field.float-field
+      = f.label :weight
+      = f.text_field :weight
+    .field.float-field
+      = f.label :size_width
+      = f.text_field :size_width
+    .field.float-field
+      = f.label :size_height
+      = f.text_field :size_height
+    .field.float-field
+      = f.label :size_depth
+      = f.text_field :size_depth
+    .field.float-field
+      - #= f.label :tax_type
+      - #= f.text_field :tax_type
+    .field.float-field
+      - #= f.label :digital_download
+      - #= f.check_box :digital_download, :checked => @product[:is_digital_download]
+  .field
+    #page-tabs.clearfix.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
+      %ul#page_parts
+        - [:description].each_with_index do |part, part_index|
+          <li class='ui-state-default#{' ui-state-active' if part_index == 0}'>
+          \#{link_to t("#{part}", :scope => "activerecord.attributes.refinery/products/product", :default => part.to_s.titleize), "##{part}"}
+      #page_part_editors
+        - [:description].each do |part|
+          .page_part{:id => part}
+            = f.text_area part, :rows => 20, :class => 'wymeditor widest'
+  = render '/refinery/admin/form_actions', :f => f,                                                  |
+    :continue_editing => false,                                                                      |
+    :delete_title => t('delete', :scope => 'refinery.products.admin.products.product'),              |
+    :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @product.name) |
+- content_for :javascripts do
+  :javascript
+    $(document).ready(function(){
+      page_options.init(false, '', '');
+    });
+  
