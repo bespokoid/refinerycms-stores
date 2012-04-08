@@ -15,7 +15,7 @@
         .field
           = f.label :date_available
           = f.datetime_select :date_available
-        .field
+        .field.form-lines
           = f.label :inactive
           = f.check_box :inactive
         - unless @product.digidownload.nil?
@@ -27,6 +27,10 @@
               %dd
                 %i= @product.digidownload.doc_file_name
                 = link_to( "change", refinery.products_admin_digidownload_path( @product.digidownload ), { :title => "click save first before changing the download here!" } )
+        - else
+          .field.form-lines
+            = f.label "digital download?", {:title => "check to specify a digital download; invokes upon save"}
+            = check_box_tag :digi_download
 
 
       %td.mainpic
