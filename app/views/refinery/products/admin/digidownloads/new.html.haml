@@ -1,2 +1,2 @@
 - content_for :stylesheets, stylesheet_link_tag('refinery/refinerycms-stores')
-= render 'form'
+= render( 'form', :locals => { :form_title => "Create new digital download" } )

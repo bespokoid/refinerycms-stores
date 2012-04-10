@@ -1,3 +1,4 @@
+%h3= form_title   # local parameter
 = form_for [refinery, :products_admin, @digidownload], :html => { :multipart => true } do |f|
   = render '/refinery/admin/error_messages', :object => @digidownload, :include_object_name => true
 
@@ -11,7 +12,7 @@
           %i= @digidownload.doc_file_name
 
   = f.label( "This download belongs to product:" )
-  = f.select( :product_id, @digidownload.digi_select_list )
+  = f.select( :product_id, @digidownload.digi_select_list, :selected => ( @digidownload.product_id || params[:product_id] ) )
 
   = f.label( :doc, 'Upload new digital download', {:title => "digital download to be added or changed"} ) 
   = f.file_field( :doc )
