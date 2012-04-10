@@ -1,4 +1,4 @@
-%h3= form_title   # local parameter
+%h2= form_title   # local parameter
 = form_for [refinery, :products_admin, @digidownload], :html => { :multipart => true } do |f|
   = render '/refinery/admin/error_messages', :object => @digidownload, :include_object_name => true
 

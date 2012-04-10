@@ -1,3 +1,5 @@
+- no_digidownload = @product.digidownload.nil?
+
 = form_for [refinery, :products_admin, @product] do |f|
   = render '/refinery/admin/error_messages', |
     :object => @product,                     |
@@ -18,15 +20,16 @@
         .field.form-lines
           = f.label :inactive
           = f.check_box :inactive
-        - unless @product.digidownload.nil?
+        - unless no_digidownload
           .download-documents.clearfix
             %dl
               %dt
                 = link_to( raw( image_tag( ::Refinery::Products::Digidownload.category_to_icon( @product.digidownload.to_category ), { :alt => @product.digidownload.doc_file_name, :class => 'icon_image' } ) ), @product.digidownload.doc.url, {:title => @product.digidownload.doc_file_name, :target => 'popup', :onclick => "return popup(this.href,this.title)"} )
 
               %dd
-                %i= @product.digidownload.doc_file_name
-                = link_to( "change", refinery.products_admin_digidownload_path( @product.digidownload ), { :title => "click save first before changing the download here!" } )
+                %i
+                  = @product.digidownload.doc_file_name
+                  = link_to( "change", refinery.edit_products_admin_digidownload_path( @product.digidownload ), { :title => "click save first before changing the download here!" } )
         - else
           .field.form-lines
             = f.label "digital download?", {:title => "check to specify a digital download; invokes upon save"}
@@ -49,27 +52,27 @@
     .field.float-field
       = f.label :price
       = f.text_field :price
-    .field.float-field
-      = f.label :quantity
-      = f.text_field :quantity
-    .field.float-field
-      = f.label :weight
-      = f.text_field :weight
-    .field.float-field
-      = f.label :size_width
-      = f.text_field :size_width
-    .field.float-field
-      = f.label :size_height
-      = f.text_field :size_height
-    .field.float-field
-      = f.label :size_depth
-      = f.text_field :size_depth
-    .field.float-field
-      - #= f.label :tax_type
-      - #= f.text_field :tax_type
-    .field.float-field
-      - #= f.label :digital_download
-      - #= f.check_box :digital_download, :checked => @product[:is_digital_download]
+
+    - if no_digidownload
+      .field.float-field
+        = f.label :quantity
+        = f.text_field :quantity
+      .field.float-field
+        = f.label :weight
+        = f.text_field :weight
+      .field.float-field
+        = f.label :size_width
+        = f.text_field :size_width
+      .field.float-field
+        = f.label :size_height
+        = f.text_field :size_height
+      .field.float-field
+        = f.label :size_depth
+        = f.text_field :size_depth
+      .field.float-field
+        - #= f.label :tax_type
+        - #= f.text_field :tax_type
+
   .field
     #page-tabs.clearfix.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
       %ul#page_parts
