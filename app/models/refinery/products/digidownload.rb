@@ -37,6 +37,7 @@ module Refinery
       belongs_to :product, :class_name => '::Refinery::Products::Product'
 
       before_create  :generate_download_token
+      before_save    :clean_restrictions
 
 # #########################################################################
   
@@ -144,12 +145,18 @@ module Refinery
      ""    # returns nothing
    end  # case
   end
-  # http://www.w3schools.com/html/song.mp3
+
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
+
+
 # ------------------------------------------------------------------------------
+  # clean_restrictions -- always ensure that restrictions are valid
 # ------------------------------------------------------------------------------
-  
+  def clean_restrictions
+    restrict_count = 0 unless restrict_count.nil? || restrict_count > 0
+    restrict_days  = 0 unless restrict_days.nil?  || restrict_days > 0
+  end
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
