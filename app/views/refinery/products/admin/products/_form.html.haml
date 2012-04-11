@@ -30,6 +30,9 @@
                 %i
                   = @product.digidownload.doc_file_name
                   = link_to( "change", refinery.edit_products_admin_digidownload_path( @product.digidownload ), { :title => "click save first before changing the download here!" } )
+                  = @product.digidownload.to_player.html_safe
+
+
         - else
           .field.form-lines
             = f.label "digital download?", {:title => "check to specify a digital download; invokes upon save"}

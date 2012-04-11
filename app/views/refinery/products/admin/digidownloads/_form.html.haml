@@ -1,3 +1,6 @@
+- content_for :javascripts do
+  = javascript_include_tag "http://api.html5media.info/1.1.5/html5media.min.js"
+
 %h2= form_title   # local parameter
 = form_for [refinery, :products_admin, @digidownload], :html => { :multipart => true } do |f|
   = render '/refinery/admin/error_messages', :object => @digidownload, :include_object_name => true
@@ -10,6 +13,7 @@
 
         %dd
           %i= @digidownload.doc_file_name
+          = @digidownload.to_player.html_safe
 
   = f.label( "This download belongs to product:" )
   = f.select( :product_id, @digidownload.digi_select_list, :selected => ( @digidownload.product_id || params[:product_id] ) )

@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "refinerycms-stores"
-  s.version = "0.0.20"
+  s.version = "0.0.21"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daudi Amani"]
-  s.date = "2012-04-06"
+  s.date = "2012-04-11"
   s.description = "Complete engine for Stripe gateway-based shopping cart to be used with a RefineryCMS project"
   s.email = "dsaronin@gmail.com"
   s.extra_rdoc_files = [
@@ -90,7 +90,7 @@ Gem::Specification.new do |s|
     "app/views/refinery/products/admin/digidownloads/index.html.haml",
     "app/views/refinery/products/admin/digidownloads/new.html.haml",
     "app/views/refinery/products/admin/products/_actions.html.erb",
-    "app/views/refinery/products/admin/products/_form.html.erb",
+    "app/views/refinery/products/admin/products/_form.html.haml",
     "app/views/refinery/products/admin/products/_product.html.erb",
     "app/views/refinery/products/admin/products/_products.html.erb",
     "app/views/refinery/products/admin/products/_records.html.erb",
@@ -132,6 +132,7 @@ Gem::Specification.new do |s|
     "lib/generators/refinery/stores_generator.rb",
     "lib/refinery/addresses.rb",
     "lib/refinery/addresses/engine.rb",
+    "lib/refinery/auth_key.rb",
     "lib/refinery/cart.rb",
     "lib/refinery/cart_item.rb",
     "lib/refinery/customers.rb",
