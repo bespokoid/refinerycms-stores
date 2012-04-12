@@ -177,8 +177,9 @@ module Refinery
 # ---------------------------------------------------------------------------
   # checkout! -- checkout converts the cart into a fledgling order
 # ---------------------------------------------------------------------------
-  def self.checkout!( cart )
+  def self.checkout!( cart, user )
     order = Order.new
+    order.customer = user
 
       # convert cart.items to order.line_items
     cart.items.each do | item |
@@ -276,7 +277,7 @@ module Refinery
 # ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
   def self.any_digidownloads?( user_id )
-    where( :has_digidownload => true, :customer_id => user_id ).count > 0
+    where( :has_digidownloads => true, :order_customer_id => user_id ).count > 0
   end
 
 # ---------------------------------------------------------------------------

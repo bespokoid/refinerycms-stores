@@ -49,7 +49,7 @@ module Refinery
     if @cart.items.empty?
       redirect_to_index("Your cart is empty")
     else
-      @order = ::Refinery::Orders::Order.checkout!( @cart )
+      @order = ::Refinery::Orders::Order.checkout!( @cart, current_refinery_user )
       session[:cart] = nil
       redirect_to   refinery.edit_orders_order_path( @order )
     end

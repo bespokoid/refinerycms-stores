@@ -29,6 +29,7 @@ Refinery::Core::Engine.routes.draw do
 
   namespace :products do
     resources :products, :only => [:show]
+    resources :digidownloads, :only => [:index, :show]
   end
 
 

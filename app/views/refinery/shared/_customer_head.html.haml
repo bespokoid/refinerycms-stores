@@ -7,6 +7,9 @@
         = link_to( "profile", refinery.edit_customers_customer_path( current_refinery_user ), :title => "update your profile information" )
         &nbsp;
         = link_to( "sign out", refinery.destroy_refinery_user_session_path, :title => "switch customer profile" )
+        - if ::Refinery::Orders::Order.any_digidownloads?(  current_refinery_user.id  )
+          &nbsp;
+          = link_to( "my&nbsp;downloads".html_safe, refinery.products_digidownloads_path( ), :title => "access your digital downloads" )
       -else
         = link_to( "sign up", refinery.new_customers_customer_path, :title => "create a new customer profile" )
         &nbsp;
