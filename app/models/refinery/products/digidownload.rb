@@ -117,12 +117,6 @@ module Refinery
   
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
-  def generate_download_token
-    self.download_token = ::Refinery::AuthKey.make_token
-  end
-
-# ------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------
   def digi_select_list
     return ::Refinery::Products::Product.digi_select_list if self.product.nil?
     return [ ["no product selected",nil], [self.product.name, self.product_id] ]
@@ -148,14 +142,16 @@ module Refinery
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
-
+  def generate_download_token
+    self.download_token = ::Refinery::AuthKey.make_token
+  end
 
 # ------------------------------------------------------------------------------
   # clean_restrictions -- always ensure that restrictions are valid
 # ------------------------------------------------------------------------------
   def clean_restrictions
-    restrict_count = 0 unless restrict_count.nil? || restrict_count > 0
-    restrict_days  = 0 unless restrict_days.nil?  || restrict_days > 0
+    self.restrict_count = nil unless self.restrict_count.nil? || self.restrict_count > 0
+    self.restrict_days  = nil unless self.restrict_days.nil?  || self.restrict_days > 0
   end
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------

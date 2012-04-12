@@ -18,6 +18,8 @@ class CreateOrdersOrders < ActiveRecord::Migration
       t.integer :cc_expiry_year
       t.datetime :cc_purchased_on
       t.string  :cc_confirmation_id
+      t.boolean :has_digidownloads, :default => false
+      t.boolean :has_registrations, :default => false
       t.integer :position
 
       t.timestamps

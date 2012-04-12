@@ -5,6 +5,7 @@ module Refinery
 
       belongs_to :order
       belongs_to :product, :class_name => ::Refinery::Products::Product
+      has_one    :digidownload, :through => :product, :class_name => ::Refinery::Products::Digidownload
 
 #       validates :order_status, :presence => true, :uniqueness => true
               
@@ -15,6 +16,15 @@ module Refinery
           :unit_price => item.price
         )
 
+      end
+
+      def self.has_digidownloads?( order_id )
+        self.joins( :product, :digidownload ).
+             where( 
+                   "\"refinery_line_items\".order_id = #{order_id}" +
+                   " AND \"refinery_products\".id =  \"refinery_line_items\".product_id" + 
+                     " AND \"refinery_digidownloads\".product_id = \"refinery_products\".id ").
+             count > 0
       end
 
     end  # class LineItem

@@ -267,6 +267,19 @@ module Refinery
   end
 
 # ---------------------------------------------------------------------------
+  # any_digidownloads? -- return T if an order has any digidownloads in it
+# ---------------------------------------------------------------------------
+  def any_digidownloads?()
+    LineItem.has_digidownloads?( self.id )
+  end
+
+# ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+  def self.any_digidownloads?( user_id )
+    where( :has_digidownload => true, :customer_id => user_id ).count > 0
+  end
+
+# ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
 
   private
@@ -294,6 +307,10 @@ module Refinery
   def order_completed()
     # create a confirmation code
     # kick off shipping process
+
+    self.has_digidownloads = any_digidownloads? 
+    save
+
   end
 
 # ---------------------------------------------------------------------------
