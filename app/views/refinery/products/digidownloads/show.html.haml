@@ -1,0 +1,39 @@
+- content_for :body_content_title do
+  = @digidownload.product.name
+
+- content_for :body_content_left do
+  %section#product
+    .product_show
+      .product_photo
+        - if @digidownload.product.main_pic_id
+          = image_fu @digidownload.product.main_pic, Refinery::Images.user_image_sizes[:large], :class => "product-pic", :alt =>  @digidownload.product.name
+        - else
+          \&nbsp;
+      .product_text
+        %h1
+          = @digidownload.product.name
+        %p
+          = raw @digidownload.product.description
+
+      .download-documents.clearfix
+        %h2 How to download
+        %ul
+          %li To download to your computer: right-click the icon below, select SAVE-AS.
+          %li To open immediately: click the icon below.
+          %li To play media: click the start button in the player.
+        %dl
+          %dt
+            = link_to( raw( image_tag( ::Refinery::Products::Digidownload.category_to_icon( @digidownload.to_category ), { :alt => @digidownload.doc_file_name, :class => 'icon_image' } ) ), @digidownload.doc.url, {:title => @digidownload.doc_file_name, :target => 'popup', :onclick => "return popup(this.href,this.title)"} )
+
+          %dd
+            %i= @digidownload.doc_file_name
+            %br
+            = @digidownload.to_player.html_safe
+
+
+- content_for :body_content_right do
+  %aside
+    &nbsp;
+
+= render '/refinery/content_page'
+

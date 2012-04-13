@@ -5,12 +5,15 @@ module Refinery
       helper  'refinery/stores/stores'
 
       def index
-          present(@page)
-       end
+        @digidownloads = current_refinery_user.digidownloads
+        present(@page)
+      end
 
       def show
-          present(@page)
-       end
+        @digidownload = ::Refinery::Products::Digidownload.find( params[:id] )
+        # TODO: verify that digid belongs to customer
+        present(@page)
+      end
 
     protected
 

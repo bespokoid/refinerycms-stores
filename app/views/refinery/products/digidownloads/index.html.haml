@@ -1,0 +1,28 @@
+- content_for :stylesheets, stylesheet_link_tag('refinery/refinerycms-stores')
+
+- content_for :body_content_title do
+  Your Digital Downloads
+
+- content_for :body_content_left do
+  %section
+    %h1 Your Digital Downloads
+    %p
+      %i click name to access download
+
+  %section.catalog-brief-list
+    %dl
+      - @digidownloads.each do |digi|
+        %dt
+          - if digi.product.main_pic_id
+            = image_fu digi.product.main_pic, Refinery::Images.user_image_sizes[:small], :class => "catalog-pic", :alt =>  digi.product.name
+          - else
+            \&nbsp;
+        %dd
+          = link_to( ( truncate( digi.product.name, :length => 60 ) + " &raquo;" ).html_safe, refinery.products_digidownload_path( digi ) )
+
+- content_for :body_content_right do
+  %aside
+    &nbsp;
+    
+
+= render "/refinery/content_page"

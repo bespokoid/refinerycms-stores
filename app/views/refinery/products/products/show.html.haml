@@ -18,14 +18,15 @@
         %p
           code: #{@product.code}
           %br/
-          size:
-          \#{number_with_precision(@product.size_width, :precision => 1)} x
-          \#{number_with_precision(@product.size_height, :precision => 1)} x
-          \#{number_with_precision(@product.size_depth, :precision => 1)}
-          %br/
-          weight:
-          \#{number_with_precision(@product.weight, :precision => 1)} lbs
-          - unless @product.digital_download_id.blank?
+          - if @product.digidownload.nil?
+            %br/
+            size:
+            \#{number_with_precision(@product.size_width, :precision => 1)} x
+            \#{number_with_precision(@product.size_height, :precision => 1)} x
+            \#{number_with_precision(@product.size_depth, :precision => 1)}
+            weight:
+            \#{number_with_precision(@product.weight, :precision => 1)} lbs
+          - else
             %i digital download
       .product_pricebuy
         %h2

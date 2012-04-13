@@ -13,6 +13,8 @@ module Refinery
 
       has_many  :addresses, :class_name => ::Refinery::Addresses::Address
       has_many  :line_items
+      has_many  :products, :through => :line_items, :class_name => ::Refinery::Products::Product
+      has_many  :digidownloads, :through => :products, :class_name => ::Refinery::Products::Digidownload
 
       belongs_to :customer, :class_name => ::Refinery::Customers::Customer, :foreign_key => :order_customer_id
 
@@ -282,6 +284,12 @@ module Refinery
 
 # ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+
 
   private
 
