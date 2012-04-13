@@ -17,6 +17,7 @@ module Refinery
       has_many  :digidownloads, :through => :products, :class_name => ::Refinery::Products::Digidownload
 
       belongs_to :customer, :class_name => ::Refinery::Customers::Customer, :foreign_key => :order_customer_id
+      belongs_to :user,     :class_name => ::Refinery::User, :foreign_key => :order_customer_id
 
       # belongs_to :shipping_type
       # belongs_to :discount
@@ -181,7 +182,7 @@ module Refinery
 # ---------------------------------------------------------------------------
   def self.checkout!( cart, user )
     order = Order.new
-    order.customer = user
+    order.user = user
 
       # convert cart.items to order.line_items
     cart.items.each do | item |
