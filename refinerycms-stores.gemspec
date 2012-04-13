@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "refinerycms-stores"
-  s.version = "0.0.21"
+  s.version = "0.0.22"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daudi Amani"]
-  s.date = "2012-04-11"
+  s.date = "2012-04-13"
   s.description = "Complete engine for Stripe gateway-based shopping cart to be used with a RefineryCMS project"
   s.email = "dsaronin@gmail.com"
   s.extra_rdoc_files = [
@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
     "app/controllers/refinery/orders/orders_controller.rb",
     "app/controllers/refinery/products/admin/digidownloads_controller.rb",
     "app/controllers/refinery/products/admin/products_controller.rb",
+    "app/controllers/refinery/products/digidownloads_controller.rb",
     "app/controllers/refinery/products/products_controller.rb",
     "app/controllers/refinery/stores/admin/stores_controller.rb",
     "app/controllers/refinery/stores/stores_controller.rb",
@@ -98,6 +99,8 @@ Gem::Specification.new do |s|
     "app/views/refinery/products/admin/products/edit.html.erb",
     "app/views/refinery/products/admin/products/index.html.erb",
     "app/views/refinery/products/admin/products/new.html.erb",
+    "app/views/refinery/products/digidownloads/index.html.haml",
+    "app/views/refinery/products/digidownloads/show.html.haml",
     "app/views/refinery/products/products/show.html.haml",
     "app/views/refinery/shared/_address_form.html.haml",
     "app/views/refinery/shared/_cart.html.haml",
