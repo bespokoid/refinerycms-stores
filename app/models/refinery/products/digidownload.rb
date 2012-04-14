@@ -25,16 +25,20 @@ module Refinery
           :storage => :s3, 
           :s3_credentials => "#{Rails.root}/config/s3.yml", 
           :s3_protocol => "https",
-          :path => "/:style/:filename"
+          #  :s3_permissions => :private,
+          :path => "/:style/downloads/:filename"
 
       has_attached_file :preview,
           :storage => :s3, 
           :s3_credentials => "#{Rails.root}/config/s3.yml", 
           :s3_protocol => "https",
-          :path => "/:style/:filename"
+          :path => "/:style/previews/:filename"
 
 
-      belongs_to :product, :class_name => '::Refinery::Products::Product'
+      belongs_to :product, :class_name => ::Refinery::Products::Product
+      has_one    :line_item, :through => :product, :source => :line_items, :class_name => ::Refinery::Orders::LineItem
+      has_one    :order, :through => :line_item, :class_name => ::Refinery::Orders::Order
+      has_one    :user, :through => :order, :class_name => ::Refinery::User
 
       before_create  :generate_download_token
       before_save    :clean_restrictions
@@ -153,6 +157,19 @@ module Refinery
     self.restrict_count = nil unless self.restrict_count.nil? || self.restrict_count > 0
     self.restrict_days  = nil unless self.restrict_days.nil?  || self.restrict_days > 0
   end
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
