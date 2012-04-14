@@ -73,12 +73,13 @@ module Refinery
     protected
 
       def find_all_orders
-        @orders = Order.order('position ASC')
+        @orders = current_refinery_user.orders
       end
 
       def find_order
         @order = Order.find(params[:id]) 
-      end
+        return false unless refinery_user_signed_in? && current_refinery_user == @order.user
+       end
 
       def find_page
         @page = ::Refinery::Page.where(:link_url => "/orders").first
