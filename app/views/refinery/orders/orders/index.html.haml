@@ -2,5 +2,9 @@
   %ul#orders
     - @orders.each do |order|
       %li
+        = order.display_date.to_s(:long)
         = link_to order.order_status, refinery.orders_order_path(order)
+        = order.order_number.to_s
+        = number_to_currency(order.product_total)
+        = truncate( order.line_items.first.product.name, :length => 40)
 = render "/refinery/content_page"

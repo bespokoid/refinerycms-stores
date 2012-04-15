@@ -40,12 +40,21 @@ module Refinery
 #       t.references    :order_customer
 #       t.string        :order_status, :default => '', :null => false
 #       t.text          :order_notes
-#       t.references    :shipping_type
-#       t.datetime      :shipped_on
-#       t.float         :product_cost, :default => 0.0, :limit => 10
-#       t.float         :shipping_cost, :default => 0.0, :limit => 10
-#       t.float         :tax_cost, :default => 0.0, :limit => 5
- 
+#       t.references :shipping_type
+#       t.datetime :shipped_on
+#       t.float :product_total, :default => 0.0, :limit => 10
+#       t.float :shipping_charges, :default => 0.0, :limit => 10
+#       t.float :tax_charges, :default => 0.0, :limit => 5
+#       t.string :cc_token
+#       t.string :cc_last4, :limit => 8
+#       t.string :cc_card_type, :limit => 32
+#       t.integer :cc_expiry_month
+#       t.integer :cc_expiry_year
+#       t.datetime :cc_purchased_on
+#       t.string  :cc_confirmation_id
+#       t.boolean :has_digidownloads, :default => false
+#       t.boolean :has_registrations, :default => false
+#
 # #########################################################################
 # AASM STATE MACHINE AREA ... try to keep generic!
 # #########################################################################
@@ -284,7 +293,12 @@ module Refinery
   end
 
 # ---------------------------------------------------------------------------
+  # display_date -- returns a date for displaying for order
 # ---------------------------------------------------------------------------
+   def display_date
+      ( self.shipped_on || self.cc_purchased_on || self.updated_at ).to_date
+   end
+
 # ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
 
