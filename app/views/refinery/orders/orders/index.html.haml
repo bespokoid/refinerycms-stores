@@ -1,10 +1,21 @@
+- content_for :stylesheets do
+  = stylesheet_link_tag('refinery/refinerycms-stores')
+
 - content_for :body_content_left do
-  %ul#orders
-    - @orders.each do |order|
-      %li
-        = order.display_date.to_s(:long)
-        = link_to order.order_status, refinery.orders_order_path(order)
-        = order.order_number.to_s
-        = number_to_currency(order.product_total)
-        = truncate( order.line_items.first.product.name, :length => 40)
+  #orders
+    %table{ :width => "100%" }
+      %thead.heading-row
+        %th.date-col{:width => "10%"} date
+        %th.order-no-col{:width => "10%"} order #
+        %th.item-col{:width => "50%"} first item
+        %th.amount-col{:width => "5%"} amount
+        %th.status-col{:width => "25%"} status
+ 
+      - @orders.each do |order|
+        %tr
+          %td.date-col= order.display_date.to_s(:long)
+          %td.order-no-col= order.order_number.to_s
+          %td.item-col= truncate( order.line_items.first.product.name, :length => 40)
+          %td.amount-col= number_to_currency(order.product_total)
+          %td.status-col= link_to order.order_status, refinery.orders_order_path(order)
 = render "/refinery/content_page"

@@ -1,36 +1,56 @@
+- content_for :stylesheets do
+  = stylesheet_link_tag('refinery/refinerycms-stores')
+
 - content_for :body_content_title do
   %h1 
-    Order Number:  
+    Order #
     = @order.order_number
+  
 
 - content_for :body_content_left do
+
   %section
-    %h1 Order Status
-    %p
-      = raw @order.order_status
-  %section
-    %h1 Shipping Type
-    %p
-      = raw @order.shipping_type
-  %section
-    %h1 Shipped On
-    %p
-      = raw @order.shipped_on
-  %section
-    %h1 Poduct Cost
-    %p
-      = raw @order.poduct_cost
-  %section
-    %h1 Shipping Cost
-    %p
-      = raw @order.shipping_cost
-  %section
-    %h1 Tax Cost
-    %p
-      = raw @order.tax_cost
+    %h3 bill to
+    = render( :partial => "refinery/shared/address", :object => @order.billing_address,  :locals => { :as_name => :billing_address } )
+      
+    %h3 ship to
+    = render( :partial => "refinery/shared/address", :object => @order.shipping_address, :locals => { :as_name => :shipping_address } )
+
+    .order-content
+      %ul
+        - @order.line_items.each do |item|
+          %li
+            .item-name= item.product.name
+            .item-quantity= item.quantity
+            .item-unit-price= item.unit_price
+            .item-total-price= pretty_total_price( item )
+
+    .order-totals
+      - sub_product  = @order.total_price
+      - sub_discount = 0.0
+      - sub_shipping = 0.0
+      - sub_tax      = 0.0
+      - grand_total  = sub_product - sub_discount + sub_shipping + sub_tax
+
+      .sub-total-type product
+      .sub-total-amount= number_to_currency sub_product
+
+      .sub-total-type discount
+      .sub-total-amount= number_to_currency  sub_discount
+
+      .sub-total-type shipping
+      .sub-total-amount= number_to_currency  sub_shipping 
+
+      .sub-total-type tax
+      .sub-total-amount= number_to_currency  sub_shipping 
+
+      .total-type purchase total
+      .total-amount= number_to_currency  grand_total
+
 
 - content_for :body_content_right do
   %aside
-    %h2= t('.other')
+    &nbsp;
 
 = render "/refinery/content_page"
+

@@ -21,9 +21,12 @@ module Refinery
       end
 
       def show
-        # you can use meta fields from your model instead (e.g. browser_title)
-        # by swapping @page for @order in the line below:
-        present(@order)
+        if (@action = @order.get_render_template).nil?
+          present(@order)
+        else
+          prep_edit_view
+          render :action => @action
+        end  # if..then..else no action
       end
 
         # update must proceed within confines of order state machine
