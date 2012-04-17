@@ -1,12 +1,18 @@
-%div( id = '#{as_name.to_s}' )
+%div( class = 'address-block' id = '#{as_name.to_s}' )
+  %h3= as_name.to_s.gsub(/_/,' ') 
   = address.first_name 
   = address.last_name 
-  = address.phone 
-  = address.email 
+  %br
   = address.address1 
   = address.address2 
+  %br
   = address.city 
   = address.state 
   = address.zip 
+  %br
   = address.country 
+  %br
+  = number_to_phone address.phone 
+  &emsp;
+  = address.email 
 

@@ -10,10 +10,7 @@
 - content_for :body_content_left do
 
   %section
-    %h3 bill to
     = render( :partial => "refinery/shared/address", :object => @order.billing_address,  :locals => { :as_name => :billing_address } )
-      
-    %h3 ship to
     = render( :partial => "refinery/shared/address", :object => @order.shipping_address, :locals => { :as_name => :shipping_address } )
 
     .order-content
