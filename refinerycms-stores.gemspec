@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "refinerycms-stores"
-  s.version = "0.0.23"
+  s.version = "0.0.24"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daudi Amani"]
-  s.date = "2012-04-13"
+  s.date = "2012-04-17"
   s.description = "Complete engine for Stripe gateway-based shopping cart to be used with a RefineryCMS project"
   s.email = "dsaronin@gmail.com"
   s.extra_rdoc_files = [
@@ -102,6 +102,7 @@ Gem::Specification.new do |s|
     "app/views/refinery/products/digidownloads/index.html.haml",
     "app/views/refinery/products/digidownloads/show.html.haml",
     "app/views/refinery/products/products/show.html.haml",
+    "app/views/refinery/shared/_address.html.haml",
     "app/views/refinery/shared/_address_form.html.haml",
     "app/views/refinery/shared/_cart.html.haml",
     "app/views/refinery/shared/_cart_item.html.haml",
@@ -173,7 +174,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/dsaronin@gmail.com/refinerycms-stores"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.15"
   s.summary = "refinerycms shopping cart engine"
 
   if s.respond_to? :specification_version then
