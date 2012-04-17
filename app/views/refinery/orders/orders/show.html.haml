@@ -10,40 +10,66 @@
 - content_for :body_content_left do
 
   %section
+    %h4= @order.order_status.gsub(/_/,' ')
+    %p= @order.display_date.to_s(:long)
+
     = render( :partial => "refinery/shared/address", :object => @order.billing_address,  :locals => { :as_name => :billing_address } )
     = render( :partial => "refinery/shared/address", :object => @order.shipping_address, :locals => { :as_name => :shipping_address } )
 
     .order-content
-      %ul
+      %table{ :width => "90%" }
+        %thead.heading-row
+          %th.item-col{:width => "70%"} item
+          %th.amount-col{:width => "10%"} quantity
+          %th.amount-col{:width => "10%"} price
+          %th.amount-col{:width => "10%"} amount
+
         - @order.line_items.each do |item|
-          %li
-            .item-name= item.product.name
-            .item-quantity= item.quantity
-            .item-unit-price= item.unit_price
-            .item-total-price= pretty_total_price( item )
+          %tr
+            %td.item-name= item.product.name
+            %td.item-quantity= item.quantity
+            %td.item-unit-price= item.unit_price
+            %td.sub-total-type= pretty_total_price( item )
 
-    .order-totals
-      - sub_product  = @order.total_price
-      - sub_discount = 0.0
-      - sub_shipping = 0.0
-      - sub_tax      = 0.0
-      - grand_total  = sub_product - sub_discount + sub_shipping + sub_tax
+        .order-totals
+          - sub_product  = @order.total_price
+          - sub_discount = 0.0
+          - sub_shipping = 0.0
+          - sub_tax      = 0.0
+          - grand_total  = sub_product - sub_discount + sub_shipping + sub_tax
 
-      .sub-total-type product
-      .sub-total-amount= number_to_currency sub_product
+          %tr
+            %td{ :colspan => 4 } &nbsp;
 
-      .sub-total-type discount
-      .sub-total-amount= number_to_currency  sub_discount
+          %tr 
+            %td.right-just product
+            %td &nbsp;
+            %td &nbsp;
+            %td.sub-total-type= number_to_currency sub_product
 
-      .sub-total-type shipping
-      .sub-total-amount= number_to_currency  sub_shipping 
+          %tr
+            %td.right-just discount
+            %td &nbsp;
+            %td &nbsp;
+            %td.sub-total-type= number_to_currency sub_discount
 
-      .sub-total-type tax
-      .sub-total-amount= number_to_currency  sub_shipping 
+          %tr
+            %td.right-just shipping
+            %td &nbsp;
+            %td &nbsp;
+            %td.sub-total-type= number_to_currency sub_shipping
 
-      .total-type purchase total
-      .total-amount= number_to_currency  grand_total
+          %tr
+            %td.right-just tax
+            %td &nbsp;
+            %td &nbsp;
+            %td.sub-total-type= number_to_currency sub_tax
 
+          %tr
+            %td.right-just purchase total
+            %td &nbsp;
+            %td &nbsp;
+            %td.sub-total-type= number_to_currency grand_total
 
 - content_for :body_content_right do
   %aside
