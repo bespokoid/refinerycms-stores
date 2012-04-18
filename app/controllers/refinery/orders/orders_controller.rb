@@ -10,7 +10,7 @@ module Refinery
 
       before_filter :find_all_orders, :only => :index
       before_filter :find_order, :except => :index
-      before_filter :setup_payment_gateway, :only => [:edit, :update, :purchase, :re_edit]
+      before_filter :setup_payment_gateway, :only => [:show, :edit, :update, :purchase, :re_edit]
 
       helper  'refinery/stores/stores'
 
