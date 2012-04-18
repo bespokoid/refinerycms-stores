@@ -5,15 +5,15 @@
   #orders
     %table{ :width => "100%" }
       %thead.heading-row
-        %th.date-col{:width => "13%"} date
+        %th.date-col{:width => "15%"} date
         %th.order-no-col{:width => "12%"} order #
         %th.item-col{:width => "50%"} first item
         %th.amount-col{:width => "5%"} amount
-        %th.status-col{:width => "20%"} status
+        %th.status-col{:width => "17%"} status
  
       - @orders.each do |order|
         %tr
-          %td.date-col= order.display_date.to_s(:long)
+          %td.date-col= order.display_date.to_s(:short)
           %td.order-no-col= order.order_number.to_s
           %td.item-col= truncate( order.line_items.first.product.name, :length => 40)
           %td.amount-col= number_to_currency(order.product_total)
