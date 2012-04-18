@@ -1,9 +1,8 @@
 # Stores engine for Refinery CMS.
 
 ## *** STILL IN DEVELOPMENT ***
-Please wait for 0.1.0 release! 
 
-release: 0.0.25+
+release: 0.1.0
 Basic e-commerce shopping cart for digital downloads on the Stripe payments gateway.
 
 Here's what works:
@@ -16,6 +15,7 @@ Here's what works:
 * Cart: exists only within context of the session; lose the session, lose the cart
 * Checkout: converts cart to proto-Order
 * Orders: order state machine works; edit order, enter credit card, purchase, index, show
+* admin dashboard: view, track orders
 * Payment gateway: Stripe is default, setup keys in Settings (first time usage creates empty default secret, API); Stripe is working for purchases.
 * Styling: very minimal (in RefineryCMS tradition), but fully capable of supporting fancy CSS styling
 
@@ -27,8 +27,9 @@ Here's what works:
 * related products
 * registrations (register for classes, events, seminars, etc)
 * discounts
-* admin dashboard: view, track orders
 * product inventory add/subtract upon purchase
+* digi-downloads: restrict download counts or days after purchase
+* order fulfillment (admin): need process actions to ship
 
 ## How to build this engine as a gem
 
