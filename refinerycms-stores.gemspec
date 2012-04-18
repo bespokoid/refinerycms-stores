@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "refinerycms-stores"
-  s.version = "0.0.25"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daudi Amani"]
@@ -65,15 +65,13 @@ Gem::Specification.new do |s|
     "app/views/refinery/addresses/admin/addresses/new.html.erb",
     "app/views/refinery/customers/customers/edit.html.haml",
     "app/views/refinery/customers/customers/new.html.haml",
-    "app/views/refinery/orders/admin/orders/_actions.html.erb",
-    "app/views/refinery/orders/admin/orders/_form.html.erb",
-    "app/views/refinery/orders/admin/orders/_order.html.erb",
-    "app/views/refinery/orders/admin/orders/_orders.html.erb",
-    "app/views/refinery/orders/admin/orders/_records.html.erb",
-    "app/views/refinery/orders/admin/orders/_sortable_list.html.erb",
-    "app/views/refinery/orders/admin/orders/edit.html.erb",
-    "app/views/refinery/orders/admin/orders/index.html.erb",
-    "app/views/refinery/orders/admin/orders/new.html.erb",
+    "app/views/refinery/orders/admin/orders/_actions.html.haml",
+    "app/views/refinery/orders/admin/orders/_order.html.haml",
+    "app/views/refinery/orders/admin/orders/_orders.html.haml",
+    "app/views/refinery/orders/admin/orders/_records.html.haml",
+    "app/views/refinery/orders/admin/orders/_sortable_list.html.haml",
+    "app/views/refinery/orders/admin/orders/index.html.haml",
+    "app/views/refinery/orders/admin/orders/show.html.haml",
     "app/views/refinery/orders/orders/_card_form.html.haml",
     "app/views/refinery/orders/orders/_order_snapshot.html.haml",
     "app/views/refinery/orders/orders/confirmation.html.haml",
