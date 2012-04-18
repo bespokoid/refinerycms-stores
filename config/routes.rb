@@ -80,7 +80,7 @@ Refinery::Core::Engine.routes.draw do
 
   namespace :orders, :path => '' do
     namespace :admin, :path => 'refinery' do
-      resources :orders, :except => :show do
+      resources :orders, :only => [:show, :index] do
         collection do
           post :update_positions
         end

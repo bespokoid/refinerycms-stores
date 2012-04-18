@@ -1,0 +1,4 @@
+%ul
+  - if ::Refinery::Orders::Admin::OrdersController.searchable?
+    %li
+      = render '/refinery/admin/search', :url => refinery.orders_admin_orders_path

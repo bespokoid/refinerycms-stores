@@ -4,7 +4,8 @@ module Refinery
       class OrdersController < ::Refinery::AdminController
 
         crudify :'refinery/orders/order',
-                :title_attribute => 'order_status', :xhr_paging => true
+                :title_attribute => 'order_status', 
+                :xhr_paging => true
 
       end
     end

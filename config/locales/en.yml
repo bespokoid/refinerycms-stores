@@ -56,6 +56,8 @@ en:
             create_new: Add New Order
             reorder: Reorder Orders
             reorder_done: Done Reordering Orders
+            title: Store Orders
+            manage: View Orders
           records:
             title: Orders
             sorry_no_results: Sorry! There are no results found.
@@ -106,7 +108,7 @@ en:
           other: Other Products
     stores:
       admin:
-      stores:
+        stores:
           actions:
             title: Stores
             manage: Manage Stores

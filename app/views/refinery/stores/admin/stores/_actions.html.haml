@@ -36,3 +36,11 @@
     = link_to t('refinery.products.admin.digidownloads.actions.create_new'), refinery.new_products_admin_digidownload_path(), :class => 'add_icon'
 
 
+-# ************ ORDERS ACTIONS **********************************
+%ul.collapsible_menu
+  %li.not_a_link
+    = link_to t('refinery.orders.admin.orders.actions.title'), '#', :class => 'folder_icon'
+  %li
+    = link_to t('refinery.orders.admin.orders.actions.manage'), refinery.orders_admin_orders_path, :class => 'folder_icon'
+
+
